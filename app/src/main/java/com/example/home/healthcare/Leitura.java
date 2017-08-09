@@ -2,12 +2,9 @@ package com.example.home.healthcare;
 
 import android.app.Fragment;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.text.StaticLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,26 +22,18 @@ public class Leitura extends Fragment {
     String sys;
     String dia;
     String pulse;
-    Button bt;
-    TextView txtconexao;
-    TextView txtsys;
-    TextView txtdia;
-    TextView txtpulse;
-    TextView txtpareamento;
-    TextView txtdadosrecebidos;
+    static Button bt;
+    static TextView txtconexao;
+    static TextView txtsys;
+    static TextView txtdia;
+    static TextView txtpulse;
+    static TextView txtpareamento;
+    static TextView txtdadosrecebidos;
     ConnectionThread connect;
-    Handler handler;
     Main2Activity main2Activity = new Main2Activity();
     static String a;
 
-  //  public Leitura(String a) {
-    //    this.a = a;
-    //}
-   // public Leitura() {
-
-//    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.activity_main, container, false);
         aswitch = (Switch)myView.findViewById(R.id.conswitch);
         txtdadosrecebidos= (TextView)myView.findViewById(R.id.Leituratext4);
@@ -84,7 +73,6 @@ public class Leitura extends Fragment {
             }
         });
 
-
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,37 +104,29 @@ public class Leitura extends Fragment {
             }
         });
 
-        Bundle b  = getArguments();
-        if(b != null){
-            txtsys.setText(b.getString("sys"));
-        }
-
-
-
         return myView;
     }
 
-
-    /*public Handler handler = new Handler() {
+    public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             Bundle bundle = msg.getData();
             byte[] data = bundle.getByteArray("data");
             String dataString = new String(data);
-            if (dataString.equals("---N")) ;
+            if (dataString.equals("---N"));
             else if (dataString.equals("---S"));
                 else {
                       txtdadosrecebidos.setText("Dados recebidos: ");
-                   //// String[] parts = dataString.split("(.)");
-                   // String sys = parts[0];
-                    //String dia = parts[1];
-                  //  String pulse = parts[2];
-                    //txtdia.setText(dia);
-                   // txtsys.setText(sys);
-                 //   txtpulse.setText(pulse);
+                    String[] parts =dataString.split(",");
+                    String sys = parts[0];
+                    String dia = parts[1];
+                    String pulse = parts[2];
+                    txtdia.setText(dataString);
+                    txtsys.setText(sys);
+                    txtpulse.setText(pulse);
                     main2Activity.gravabanco(dataString);
                 }
 
             }
-    };*/
+    };
 }

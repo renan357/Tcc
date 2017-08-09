@@ -1,6 +1,5 @@
 package com.example.home.healthcare;
 
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
@@ -24,9 +23,9 @@ public class ConnectionThread extends Thread {
     String myUUID = "00001101-0000-1000-8000-00805F9B34FB";
     boolean server;
     boolean running = false;
-    boolean isConnected = false;
+    static boolean isConnected = false;
     Leitura leitura = new Leitura();
-    Main2Activity main2Activity = new Main2Activity();
+
 
 
     public ConnectionThread() {
@@ -144,7 +143,7 @@ public class ConnectionThread extends Thread {
         Bundle bundle = new Bundle();
         bundle.putByteArray("data", data);
         message.setData(bundle);
-        main2Activity.handler.sendMessage(message);
+        leitura.handler.sendMessage(message);
     }
 
 
