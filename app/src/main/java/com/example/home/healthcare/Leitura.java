@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class Leitura extends Fragment {
 
-    View myView;
+    static View myView;
     Switch aswitch;
     BluetoothAdapter btAdapter;
     ConnectionThread connect;

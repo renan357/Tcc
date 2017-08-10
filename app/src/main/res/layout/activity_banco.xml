@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.home.healthcare.BancoActivity">
+
+    <ListView
+        android:layout_width="380dp"
+        android:layout_height="375dp"
+        tools:layout_editor_absoluteX="3dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leituras realizadas"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="371dp"
+        android:layout_height="45dp"
+        android:layout_marginRight="8dp"
+        android:text="limpar histórico"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="460dp" />
+</android.support.constraint.ConstraintLayout>
