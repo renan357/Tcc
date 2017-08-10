@@ -121,7 +121,7 @@ public class Leitura extends Fragment {
                     String sys = parts[0];
                     String dia = parts[1];
                     String pulse = parts[2];
-                    txtdia.setText(dataString);
+                    txtdia.setText(dia);
                     txtsys.setText(sys);
                     txtpulse.setText(pulse);
                     main2Activity.gravabanco(dataString);
