@@ -20,6 +20,9 @@ public class Leitura extends Fragment {
     Switch aswitch;
     BluetoothAdapter btAdapter;
     ConnectionThread connect;
+    static String sys;
+    static String dia;
+    static String pulse;
     static Button bt;
     static Button btbanco;
     static TextView txtconexao;
@@ -29,6 +32,7 @@ public class Leitura extends Fragment {
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
     static int dadosok = 0;
+    MainActivity mainActivity = new MainActivity();
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -106,8 +110,9 @@ public class Leitura extends Fragment {
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
                 }else{
-                    gravabanco();
-                }
+                    mainActivity.gravabanco(sys,dia,pulse);
+                    dadosok = 0;
+                 }
 
 
             }
@@ -127,24 +132,20 @@ public class Leitura extends Fragment {
             else {
                 txtdadosrecebidos.setText("Dados recebidos: ");
                 String[] parts =dataString.split(",");
-                String sys = parts[0];
-                String dia = parts[1];
-                String pulse = parts[2];
+                sys = parts[0];
+                dia = parts[1];
+                pulse = parts[2];
                 txtdia.setText(dia);
                 txtsys.setText(sys);
                 txtpulse.setText(pulse);
-                if ((dia.equals(" 0")) &&(sys.equals(" 0"))&&(pulse.equals(" 0")));
-                else {
+              //  if ((dia.equals(" 0")) &&(sys.equals(" 0"))&&(pulse.equals(" 0")));
+                //else {
                     dadosok =1;
-                }
+                //}
 
             }
 
         }
     };
-
-    public void gravabanco(){
-
-    }
 
 }

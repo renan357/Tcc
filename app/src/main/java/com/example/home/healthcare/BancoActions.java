@@ -1,10 +1,7 @@
 package com.example.home.healthcare;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import java.util.*;
 
 /**
  * Created by Home on 31/07/2017.
@@ -28,9 +25,9 @@ public class BancoActions {
         banco.close();
     }
 
-    public void insereCabra(Userdata c)
+    public void inseredata(Userdata c)
     {
-        db.execSQL("INSERT INTO paciente (SYS, DIA, PULSE) VALUES ('"+c.getSys()+"','"+c.getDia()+"','"+c.getPulse()+"');");
+        db.execSQL("INSERT INTO paciente (SYS, DIA, PULSE, DATE, TIME) VALUES ('"+c.getSys()+"','"+c.getDia()+"','"+c.getPulse()+"','"+c.getDate()+"','"+c.getTime()+"');");
     }
 /*
     public java.util.List<String> selecionaTodosNomes() {
@@ -47,16 +44,16 @@ public class BancoActions {
         return l;
     }*/
 
-    public void deleteCabra(String nome)
+    public void deleteCabra(int id)
     {
-        db.execSQL("DELETE FROM cadastros WHERE NOME = ('"+nome+"');");
+        db.execSQL("DELETE FROM paciente WHERE ID = ('"+id+"');");
     }
 
-  /*  public void updateCabra(Cadastro c)
+  /*  public void updateCabra(Userdata c)
     {
         db.execSQL("UPDATE cadastros SET ENDERECO = '"+c.getEndereco()+"', TELEFONE = '"+c.getTelefone()+"'  WHERE NOME = ('"+c.getNome()+"');");
     }*/
-    public java.util.List<String> selecioUmCabra(String s )
+   /* public java.util.List<String> selecioUmCabra(String s )
     {
         java.util.List<String> l = new ArrayList<String>();
         Cursor c;
@@ -72,5 +69,5 @@ public class BancoActions {
         db.close();
         return l;
 
-    }
+    }*/
 }

@@ -5,24 +5,29 @@ package com.example.home.healthcare;
  */
 
 public class Userdata {
+
     int id;
-
-
     String sys;
     String dia;
     String pulse;
+    String date;
+    String time;
 
-    public Userdata(int id, String sys , String dia, String bat){
+    public Userdata(int id, String sys , String dia, String bat, String date, String time){
         this.id = id;
         this.sys = sys;
         this.dia = dia;
         this.pulse = bat;
+        this.date = date;
+        this.time = time;
     }
 
-    public Userdata( String sys , String dia, String bat){
+    public Userdata( String sys , String dia, String bat, String date, String time){
         this.sys = sys;
         this.dia = dia;
         this.pulse = bat;
+        this.date = date;
+        this.time = time;
     }
 
     public int getId() {
@@ -55,5 +60,21 @@ public class Userdata {
 
     public void setPulse(String pulse) {
         this.pulse = pulse;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
