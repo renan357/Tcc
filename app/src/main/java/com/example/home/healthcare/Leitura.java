@@ -19,22 +19,20 @@ public class Leitura extends Fragment {
     View myView;
     Switch aswitch;
     BluetoothAdapter btAdapter;
-    String sys;
-    String dia;
-    String pulse;
+    ConnectionThread connect;
     static Button bt;
+    static Button btbanco;
     static TextView txtconexao;
     static TextView txtsys;
     static TextView txtdia;
     static TextView txtpulse;
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
-    ConnectionThread connect;
-    Main2Activity main2Activity = new Main2Activity();
-    static String a;
+    static int dadosok = 0;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.activity_main, container, false);
+        myView = inflater.inflate(R.layout.activity_leitura, container, false);
         aswitch = (Switch)myView.findViewById(R.id.conswitch);
         txtdadosrecebidos= (TextView)myView.findViewById(R.id.Leituratext4);
         txtconexao = (TextView)myView.findViewById(R.id.Leituratextok);
@@ -43,8 +41,9 @@ public class Leitura extends Fragment {
         txtpulse = (TextView)myView.findViewById(R.id.Leiturapulse);
         txtpareamento = (TextView)myView.findViewById(R.id.Leituratext5);
         bt = (Button)myView.findViewById(R.id.button);
+        btbanco = (Button)myView.findViewById(R.id.btbanco);
 
-       aswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        aswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 aswitch.setFocusable(false);
@@ -91,15 +90,25 @@ public class Leitura extends Fragment {
                 }
                 if (conec.isConnected()== false){
                     txtpareamento.setText("Dispositivo não pareado!");
-           /*         try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    txtpareamento.setText(" ");*/
-                }else {
+                }
+                else {
                     txtpareamento.setText("Dispositivo pareado!");
                 }
+
+            }
+        });
+
+        btbanco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (dadosok == 0){
+                    Toast.makeText(getActivity(), "Dados inválidos!",
+                            Toast.LENGTH_LONG).show();
+                }else{
+                    gravabanco();
+                }
+
 
             }
         });
@@ -115,18 +124,27 @@ public class Leitura extends Fragment {
             String dataString = new String(data);
             if (dataString.equals("---N"));
             else if (dataString.equals("---S"));
+            else {
+                txtdadosrecebidos.setText("Dados recebidos: ");
+                String[] parts =dataString.split(",");
+                String sys = parts[0];
+                String dia = parts[1];
+                String pulse = parts[2];
+                txtdia.setText(dia);
+                txtsys.setText(sys);
+                txtpulse.setText(pulse);
+                if ((dia.equals(" 0")) &&(sys.equals(" 0"))&&(pulse.equals(" 0")));
                 else {
-                      txtdadosrecebidos.setText("Dados recebidos: ");
-                    String[] parts =dataString.split(",");
-                    String sys = parts[0];
-                    String dia = parts[1];
-                    String pulse = parts[2];
-                    txtdia.setText(dia);
-                    txtsys.setText(sys);
-                    txtpulse.setText(pulse);
-                    main2Activity.gravabanco(dataString);
+                    dadosok =1;
                 }
 
             }
+
+        }
     };
+
+    public void gravabanco(){
+
+    }
+
 }

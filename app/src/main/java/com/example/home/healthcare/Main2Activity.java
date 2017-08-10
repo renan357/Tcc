@@ -15,9 +15,6 @@ import android.view.MenuItem;
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String sys;
-    String dia;
-    String pulse;
     FragmentManager fragmentManager = getFragmentManager();
 
 
@@ -95,10 +92,5 @@ public class Main2Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-    public void gravabanco (String s){
-    }
-
 }
 
