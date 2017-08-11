@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context="com.example.home.healthcare.list_adapter">
 
     <TextView
@@ -24,7 +25,12 @@
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginStart="31dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/txtadapter1"
+        android:layout_toEndOf="@+id/txtadapter1" />
 
     <TextView
         android:id="@+id/txtadapter3"
@@ -34,7 +40,12 @@
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/txtadapter2"
+        android:layout_toEndOf="@+id/txtadapter2"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp" />
 
     <TextView
         android:id="@+id/txtadapter4"
@@ -44,7 +55,11 @@
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="53dp" />
+        tools:layout_editor_absoluteY="53dp"
+        android:layout_below="@+id/txtadapter1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp" />
 
     <TextView
         android:id="@+id/txtadapter5"
@@ -54,6 +69,10 @@
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="53dp" />
+        tools:layout_editor_absoluteY="53dp"
+        android:layout_alignBaseline="@+id/txtadapter4"
+        android:layout_alignBottom="@+id/txtadapter4"
+        android:layout_alignLeft="@+id/txtadapter2"
+        android:layout_alignStart="@+id/txtadapter2" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

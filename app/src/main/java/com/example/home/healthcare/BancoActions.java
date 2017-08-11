@@ -36,10 +36,9 @@ public class BancoActions {
     public java.util.List<String> getsys() {
         java.util.List<String> l = new ArrayList<String>();
         Cursor c;
-        c=db.rawQuery("SELECT SYS, DIA, PULSE, DATE, TIME FROM paciente;", null);
+        c=db.rawQuery("SELECT SYS FROM paciente;", null);
 
         while(c.moveToNext()){
-          //  Userdata cad  =new Userdata(c.getString(0));
             l.add(c.getString(0));
         }
         c.close();

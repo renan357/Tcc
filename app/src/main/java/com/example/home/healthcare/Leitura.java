@@ -31,7 +31,7 @@ public class Leitura extends Fragment {
     static TextView txtpulse;
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
-    static int dadosok = 0;
+    static int dadosok = 1;
     MainActivity mainActivity = new MainActivity();
 
 
@@ -110,6 +110,9 @@ public class Leitura extends Fragment {
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
                 }else{
+                    sys = "teste";
+                    dia = "teste";
+                    pulse = "teste";
                     mainActivity.gravabanco(sys,dia,pulse);
                     dadosok = 0;
                  }
@@ -138,10 +141,10 @@ public class Leitura extends Fragment {
                 txtdia.setText(dia);
                 txtsys.setText(sys);
                 txtpulse.setText(pulse);
-              //  if ((dia.equals(" 0")) &&(sys.equals(" 0"))&&(pulse.equals(" 0")));
-                //else {
+                if ((dia.equals(" 0")) &&(sys.equals(" 0"))&&(pulse.equals(" 0")));
+                else {
                     dadosok =1;
-                //}
+                }
 
             }
 

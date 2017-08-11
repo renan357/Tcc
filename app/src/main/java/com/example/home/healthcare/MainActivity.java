@@ -13,8 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,10 +87,6 @@ public class MainActivity extends AppCompatActivity
                             , new Leitura())
                     .commit();
         } else if (id == R.id.nav_slideshow) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new BancoFragment())
-                    .commit();
             listabanco();
         } else if (id == R.id.nav_manage) {
 
@@ -116,13 +114,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void listabanco(){
-       // banco.open();
-       // String[] sys = banco.getsys();
-       // String[] dia;
-       // String[] pulse;
-     //   String[] date;
-       // String[] time;
-
+        banco.open();
+        List<String> list = new ArrayList<String>();
+        list = banco.getsys();
+        String[] sys = list.toArray(new String[list.size()]);
+        String[] dia= list.toArray(new String[list.size()]);
+        String[] pulse= list.toArray(new String[list.size()]);
+        String[] date= list.toArray(new String[list.size()]);
+        String[] time= list.toArray(new String[list.size()]);
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame
+                        , new BancoFragment(this,sys,dia,pulse,date,time))
+                .commit();
 
     }
 }
