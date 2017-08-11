@@ -7,7 +7,7 @@
     tools:context="com.example.home.healthcare.list_adapter">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtadapter1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtadapter2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -27,7 +27,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtadapter3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -37,7 +37,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtadapter4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -47,7 +47,7 @@
         tools:layout_editor_absoluteY="53dp" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/txtadapter5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"

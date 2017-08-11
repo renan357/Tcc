@@ -85,7 +85,11 @@ public class MainActivity extends AppCompatActivity
                             , new Leitura())
                     .commit();
         } else if (id == R.id.nav_slideshow) {
-
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new BancoFragment())
+                    .commit();
+            listabanco();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -109,6 +113,15 @@ public class MainActivity extends AppCompatActivity
         Userdata userdata = new Userdata(sys,dia,pulse,data,hora);
         banco.inseredata(userdata);
         banco.close();
+    }
+
+    public void listabanco(){
+       // banco.open();
+       // String[] sys = banco.getsys();
+       // String[] dia;
+       // String[] pulse;
+     //   String[] date;
+       // String[] time;
 
 
     }
