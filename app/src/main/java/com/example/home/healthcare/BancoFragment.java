@@ -3,6 +3,8 @@ package com.example.home.healthcare;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,8 @@ public class BancoFragment extends Fragment {
     private final String[] pulse;
     private final String[] date;
     private final String[] time;
+    list_adapter adapter;
+    MainActivity mainActivity = new MainActivity();
 
   // public BancoFragment(){
 
@@ -38,8 +42,28 @@ public class BancoFragment extends Fragment {
         bview = inflater.inflate(R.layout.activity_banco, container ,false);
         listView = (ListView)bview.findViewById(R.id.listview);
         btlimpa = (Button)bview.findViewById(R.id.buttonbanco);
-        list_adapter adapter = new list_adapter(context,sys,dia,pulse,date,time);
+        adapter = new list_adapter(context,sys,dia,pulse,date,time);
         listView.setAdapter(adapter);
+         btlimpa.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 mainActivity.deletabanco();
+             }
+         });
+
         return bview;
     }
+
+    public Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle bundle = msg.getData();
+
+
+            byte[] data = bundle.getByteArray("data");
+            String dataString = new String(data);
+
+        }
+    };
+
 }

@@ -46,9 +46,63 @@ public class BancoActions {
         return l;
     }
 
-    public void deleteCabra(int id)
+    public java.util.List<String> getdia() {
+        java.util.List<String> l = new ArrayList<String>();
+        Cursor c;
+        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+
+        while(c.moveToNext()){
+            l.add(c.getString(0));
+        }
+        c.close();
+        db.close();
+        return l;
+    }
+
+    public java.util.List<String> getpulse() {
+        java.util.List<String> l = new ArrayList<String>();
+        Cursor c;
+        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+
+        while(c.moveToNext()){
+            l.add(c.getString(0));
+        }
+        c.close();
+        db.close();
+        return l;
+    }
+
+    public java.util.List<String> getdata() {
+        java.util.List<String> l = new ArrayList<String>();
+        Cursor c;
+        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+
+        while(c.moveToNext()){
+            l.add(c.getString(0));
+        }
+        c.close();
+        db.close();
+        return l;
+    }
+
+    public java.util.List<String> gettime() {
+        java.util.List<String> l = new ArrayList<String>();
+        Cursor c;
+        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+
+        while(c.moveToNext()){
+            l.add(c.getString(0));
+        }
+        c.close();
+        db.close();
+        return l;
+    }
+
+    public void delatabanco()
     {
-        db.execSQL("DELETE FROM paciente WHERE ID = ('"+id+"');");
+        db.execSQL("DROP TABLE IF EXISTS paciente;");
+        db.execSQL("CREATE TABLE paciente (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, PULSE TEXT NOT NULL, DATE TEXT NOT NULL, TIME TEXT NOT NULL);");
+
     }
 
   /*  public void updateCabra(Userdata c)
