@@ -3,7 +3,6 @@ package com.example.home.healthcare;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity
     static BancoActions banco;
     String data;
     String hora;
-    int tag = 0;
     static BancoFragment fragment;
 
 
@@ -125,28 +123,12 @@ public class MainActivity extends AppCompatActivity
         String[] pulse= list.toArray(new String[list.size()]);
         String[] date= list.toArray(new String[list.size()]);
         String[] time= list.toArray(new String[list.size()]);
-        if (tag == 0){
-            fragment = new BancoFragment(this,sys,dia,pulse,date,time);
+        fragment = new BancoFragment(this,sys,dia,pulse,date,time);
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            ,fragment)
-                    .commit();
-        }else{
-            Message message = new Message();
-            Bundle bundle = new Bundle();
-
-
-        }
+                            ,fragment).commit();
         banco.close();
     }
 
-    public void deletabanco(){
-        banco.open();
-        banco.delatabanco();
-        banco.close();
-        tag = 1;
-        listabanco();
-
-    }
 }
 

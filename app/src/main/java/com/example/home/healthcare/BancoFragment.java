@@ -3,13 +3,14 @@ package com.example.home.healthcare;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BancoFragment extends Fragment {
 
@@ -22,12 +23,10 @@ public class BancoFragment extends Fragment {
     private final String[] pulse;
     private final String[] date;
     private final String[] time;
-    list_adapter adapter;
-    MainActivity mainActivity = new MainActivity();
+    static list_adapter adapter;
+    static BancoActions banco;
 
-  // public BancoFragment(){
 
-   // }
     public BancoFragment(Activity context, String[] sys, String[] dia, String[] pulse, String[] date, String[] time){
         this.context = context;
         this.sys = sys;
@@ -47,23 +46,25 @@ public class BancoFragment extends Fragment {
          btlimpa.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 mainActivity.deletabanco();
+                 banco = new BancoActions(context);
+                 banco.open();
+                 banco.delatabanco();
+                 List<String> list = new ArrayList<String>();
+                 list = banco.getsys();
+                 String[] syss = list.toArray(new String[list.size()]);
+                 String[] dias= list.toArray(new String[list.size()]);
+                 String[] pulses= list.toArray(new String[list.size()]);
+                 String[] dates=list.toArray(new String[list.size()]);
+                 String[] times= list.toArray(new String[list.size()]);
+                 adapter = new list_adapter(context,syss,dias,pulses,dates,times);
+                 listView.setAdapter(adapter);
+                 banco.close();
              }
          });
 
         return bview;
     }
 
-    public Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Bundle bundle = msg.getData();
 
-
-            byte[] data = bundle.getByteArray("data");
-            String dataString = new String(data);
-
-        }
-    };
 
 }
