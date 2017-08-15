@@ -72,7 +72,7 @@
         tools:layout_editor_absoluteY="53dp"
         android:layout_alignBaseline="@+id/txtadapter4"
         android:layout_alignBottom="@+id/txtadapter4"
-        android:layout_alignLeft="@+id/txtadapter2"
-        android:layout_alignStart="@+id/txtadapter2" />
+        android:layout_toRightOf="@+id/txtadapter2"
+        android:layout_toEndOf="@+id/txtadapter2" />
 
 </RelativeLayout>

@@ -48,13 +48,13 @@ public class BancoActions {
 
     public java.util.List<String> getdia() {
         java.util.List<String> l = new ArrayList<String>();
-        Cursor c;
-        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+        Cursor d;
+        d=db.rawQuery("SELECT DIA FROM paciente;", null);
 
-        while(c.moveToNext()){
-            l.add(c.getString(0));
+        while(d.moveToNext()){
+            l.add(d.getString(0));
         }
-        c.close();
+        d.close();
         db.close();
         return l;
     }
@@ -62,7 +62,7 @@ public class BancoActions {
     public java.util.List<String> getpulse() {
         java.util.List<String> l = new ArrayList<String>();
         Cursor c;
-        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+        c=db.rawQuery("SELECT PULSE FROM paciente;", null);
 
         while(c.moveToNext()){
             l.add(c.getString(0));
@@ -75,7 +75,7 @@ public class BancoActions {
     public java.util.List<String> getdata() {
         java.util.List<String> l = new ArrayList<String>();
         Cursor c;
-        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+        c=db.rawQuery("SELECT DATE FROM paciente;", null);
 
         while(c.moveToNext()){
             l.add(c.getString(0));
@@ -88,7 +88,7 @@ public class BancoActions {
     public java.util.List<String> gettime() {
         java.util.List<String> l = new ArrayList<String>();
         Cursor c;
-        c=db.rawQuery("SELECT SYS FROM paciente;", null);
+        c=db.rawQuery("SELECT TIME FROM paciente;", null);
 
         while(c.moveToNext()){
             l.add(c.getString(0));
@@ -105,25 +105,4 @@ public class BancoActions {
 
     }
 
-  /*  public void updateCabra(Userdata c)
-    {
-        db.execSQL("UPDATE cadastros SET ENDERECO = '"+c.getEndereco()+"', TELEFONE = '"+c.getTelefone()+"'  WHERE NOME = ('"+c.getNome()+"');");
-    }*/
-   /* public java.util.List<String> selecioUmCabra(String s )
-    {
-        java.util.List<String> l = new ArrayList<String>();
-        Cursor c;
-        c=db.rawQuery("SELECT NOME, ENDERECO, TELEFONE FROM cadastros WHERE NOME = '"+s+"';", null);
-
-        while(c.moveToNext())
-        {
-            l.add(c.getString(0));
-            l.add(c.getString(1));
-            l.add(c.getString(2));
-        }
-        c.close();
-        db.close();
-        return l;
-
-    }*/
 }

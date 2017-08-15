@@ -24,7 +24,7 @@ public class BancoFragment extends Fragment {
     private final String[] date;
     private final String[] time;
     static list_adapter adapter;
-    static BancoActions banco;
+    BancoActions banco;
 
 
     public BancoFragment(Activity context, String[] sys, String[] dia, String[] pulse, String[] date, String[] time){
@@ -43,24 +43,39 @@ public class BancoFragment extends Fragment {
         btlimpa = (Button)bview.findViewById(R.id.buttonbanco);
         adapter = new list_adapter(context,sys,dia,pulse,date,time);
         listView.setAdapter(adapter);
-         btlimpa.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 banco = new BancoActions(context);
-                 banco.open();
-                 banco.delatabanco();
-                 List<String> list = new ArrayList<String>();
-                 list = banco.getsys();
-                 String[] syss = list.toArray(new String[list.size()]);
-                 String[] dias= list.toArray(new String[list.size()]);
-                 String[] pulses= list.toArray(new String[list.size()]);
-                 String[] dates=list.toArray(new String[list.size()]);
-                 String[] times= list.toArray(new String[list.size()]);
-                 adapter = new list_adapter(context,syss,dias,pulses,dates,times);
-                 listView.setAdapter(adapter);
-                 banco.close();
-             }
-         });
+        btlimpa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                banco = new BancoActions(context);
+                banco.open();
+                banco.delatabanco();
+                banco.close();
+                banco.open();
+                List<String> list = new ArrayList<String>();
+                list = banco.getsys();
+                String[] sysAdap = list.toArray(new String[list.size()]);
+                banco.close();
+                banco.open();
+                list = banco.getdia();
+                String[] diaAdap= list.toArray(new String[list.size()]);
+                banco.close();
+                banco.open();
+                list = banco.getpulse();
+                String[] pulseAdap = list.toArray(new String[list.size()]);
+                banco.close();
+                banco.open();
+                list = banco.getdata();
+                String[] dateAdap =list.toArray(new String[list.size()]);
+                banco.close();
+                banco.open();
+                list = banco.gettime();
+                String[] timeAdap = list.toArray(new String[list.size()]);
+                banco.close();
+                adapter = new list_adapter(context,sysAdap,diaAdap,pulseAdap,dateAdap,timeAdap);
+                listView.setAdapter(adapter);
+
+            }
+        });
 
         return bview;
     }

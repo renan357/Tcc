@@ -19,7 +19,7 @@ public class Leitura extends Fragment {
     static View myView;
     Switch aswitch;
     BluetoothAdapter btAdapter;
-    ConnectionThread connect;
+    static ConnectionThread connect;
     static String sys;
     static String dia;
     static String pulse;
@@ -64,7 +64,6 @@ public class Leitura extends Fragment {
                     connect.start();
                 } else {
                     btAdapter.disable();
-
                     txtconexao.setText("Conexão bluetooth desativada.");
                 }
                 try {
@@ -115,7 +114,7 @@ public class Leitura extends Fragment {
                     pulse = "teste";
                     mainActivity.gravabanco(sys,dia,pulse);
                     dadosok = 0;
-                 }
+                }
 
 
             }

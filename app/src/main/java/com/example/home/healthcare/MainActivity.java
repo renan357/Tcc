@@ -119,15 +119,27 @@ public class MainActivity extends AppCompatActivity
         List<String> list = new ArrayList<String>();
         list = banco.getsys();
         String[] sys = list.toArray(new String[list.size()]);
-        String[] dia= list.toArray(new String[list.size()]);
-        String[] pulse= list.toArray(new String[list.size()]);
-        String[] date= list.toArray(new String[list.size()]);
-        String[] time= list.toArray(new String[list.size()]);
-        fragment = new BancoFragment(this,sys,dia,pulse,date,time);
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            ,fragment).commit();
         banco.close();
+        banco.open();
+        list = banco.getdia();
+        String[] dia= list.toArray(new String[list.size()]);
+        banco.close();
+        banco.open();
+        list = banco.getpulse();
+        String[] pulse = list.toArray(new String[list.size()]);
+        banco.close();
+        banco.open();
+        list = banco.getdata();
+        String[] date =list.toArray(new String[list.size()]);
+        banco.close();
+        banco.open();
+        list = banco.gettime();
+        String[] time = list.toArray(new String[list.size()]);
+        banco.close();
+        fragment = new BancoFragment(this,sys,dia,pulse,date,time);
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame
+                        ,fragment).commit();
     }
 
 }

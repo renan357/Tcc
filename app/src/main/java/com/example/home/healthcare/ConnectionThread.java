@@ -15,8 +15,8 @@ import java.util.UUID;
 
 public class ConnectionThread extends Thread {
 
-    BluetoothSocket btSocket = null;
-    BluetoothServerSocket btServerSocket = null;
+    static BluetoothSocket btSocket = null;
+    static BluetoothServerSocket btServerSocket = null;
     InputStream input = null;
     OutputStream output = null;
     String btDevAddress = null;
@@ -98,7 +98,7 @@ public class ConnectionThread extends Thread {
         if (btSocket != null) {
 
 
-            this.isConnected = true;
+            isConnected = true;
             toMainActivity("---S".getBytes());
 
             try {
@@ -130,7 +130,7 @@ public class ConnectionThread extends Thread {
 
                 e.printStackTrace();
                 toMainActivity("---N".getBytes());
-                this.isConnected = false;
+                isConnected = false;
             }
         }
 
@@ -171,7 +171,7 @@ public class ConnectionThread extends Thread {
         try {
 
             running = false;
-            this.isConnected = false;
+            isConnected = false;
             btServerSocket.close();
             btSocket.close();
 
@@ -179,12 +179,12 @@ public class ConnectionThread extends Thread {
             e.printStackTrace();
         }
         running = false;
-        this.isConnected = false;
+        isConnected = false;
         return;
 
     }
 
     public boolean isConnected() {
-        return this.isConnected;
+        return isConnected;
     }
 }
