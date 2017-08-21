@@ -1,7 +1,10 @@
 package com.example.home.healthcare;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,6 +36,7 @@ public class Leitura extends Fragment {
     static TextView txtdadosrecebidos;
     static int dadosok = 1;
     MainActivity mainActivity = new MainActivity();
+    AlertDialog alert;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -137,17 +141,48 @@ public class Leitura extends Fragment {
                 sys = parts[0];
                 dia = parts[1];
                 pulse = parts[2];
+                sys = sys.replace(" ","");
+                dia = dia.replace(" ","");
+                pulse = pulse.replace(" ","");
                 txtdia.setText(dia);
                 txtsys.setText(sys);
                 txtpulse.setText(pulse);
-                if ((dia.equals(" 0")) &&(sys.equals(" 0"))&&(pulse.equals(" 0")));
+                if ((dia.equals("0")) &&(sys.equals("0"))&&(pulse.equals("0")));
                 else {
+                    int s;
+                    int d;
+                    s= Integer.valueOf(sys);
+                    d= Integer.valueOf(dia);
+                    if (s >=14 && d >=9){
+                        alerta("alta");
+                    }else if (s <=9 && d <=6){
+                        alerta("baixa");
+                    }
                     dadosok =1;
+
                 }
 
             }
 
         }
     };
+
+    private void alerta(String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Alerta");
+        builder.setMessage("\n" + "Sua pressao esta " + s + "." + "\n" + "Refaça o teste, em caso de reincidência procure pela pagina de ajuda ");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+            }
+        });
+        alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            }
+        });
+        alert.show();
+    }
 
 }
