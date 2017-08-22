@@ -1,7 +1,6 @@
 package com.example.home.healthcare;
 
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -42,6 +41,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         banco = new BancoActions(this);
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame
+                        , new MainFragment())
+                .commit();
     }
 
     @Override
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            finish();
             return true;
         }
 
@@ -79,9 +83,10 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_camera) {
-            Intent i = new Intent(MainActivity.this,MainActivity.class);
-            startActivity(i);
-            finish();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new MainFragment())
+                    .commit();
         } else if (id == R.id.nav_gallery) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame

@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".BancoFragment" />
-        <activity android:name=".list_adapter"></activity>
+        <activity android:name=".list_adapter" />
+        <activity android:name=".MainFragment" />
+        <activity android:name=".ClockFragment"></activity>
     </application>
 
 </manifest>
