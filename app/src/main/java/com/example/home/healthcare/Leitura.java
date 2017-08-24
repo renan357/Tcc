@@ -113,9 +113,6 @@ public class Leitura extends Fragment {
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
                 }else{
-                    sys = "teste";
-                    dia = "teste";
-                    pulse = "teste";
                     mainActivity.gravabanco(sys,dia,pulse);
                     dadosok = 0;
                 }
@@ -168,7 +165,7 @@ public class Leitura extends Fragment {
     };
 
     private void alerta(String s) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity.getContext());
         builder.setTitle("Alerta");
         builder.setMessage("\n" + "Sua pressao esta " + s + "." + "\n" + "Refaça o teste, em caso de reincidência procure pela pagina de ajuda ");
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

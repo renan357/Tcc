@@ -1,6 +1,7 @@
 package com.example.home.healthcare;
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +26,11 @@ public class MainActivity extends AppCompatActivity
     String data;
     String hora;
     static BancoFragment fragment;
+    static Context context;
+
+    public final Context getContext() {
+        return context;
+    }
 
 
     @Override
@@ -45,6 +51,7 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.content_frame
                         , new MainFragment())
                 .commit();
+        context = this;
     }
 
     @Override

@@ -26,8 +26,6 @@
         android:textSize="20sp"
         tools:layout_editor_absoluteX="150dp"
         tools:layout_editor_absoluteY="16dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginStart="31dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/txtadapter1"
         android:layout_toEndOf="@+id/txtadapter1" />
@@ -56,10 +54,10 @@
         android:textSize="20sp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="53dp"
+        android:layout_marginTop="13dp"
         android:layout_below="@+id/txtadapter1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/txtadapter5"

@@ -34,9 +34,9 @@ public class list_adapter extends ArrayAdapter<String> {
         TextView txt3 = (TextView)rowView.findViewById(R.id.txtadapter3);
         TextView txt4 = (TextView)rowView.findViewById(R.id.txtadapter4);
         TextView txt5 = (TextView)rowView.findViewById(R.id.txtadapter5);
-        txt1.setText(sys[position]);
-        txt2.setText(dia[position]);
-        txt3.setText(pulse[position]);
+        txt1.setText("Pressão: "+sys[position]);
+        txt2.setText("/"+dia[position]);
+        txt3.setText("Batimentos: "+pulse[position]);
         txt4.setText(date[position]);
         txt5.setText(time[position]);
         return rowView;
