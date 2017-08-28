@@ -102,7 +102,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             listabanco();
         } else if (id == R.id.nav_manage) {
-
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new ClockFragment())
+                    .commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

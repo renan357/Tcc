@@ -1,25 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.example.home.healthcare.ClockFragment">
 
-    <TimePicker
-        android:id="@+id/alarmTimePicker"
-        android:layout_width="325dp"
-        android:layout_height="345dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:addStatesFromChildren="false"
-        android:headerBackground="#1a7e1c"
-        android:numbersSelectorColor="#1a7e1c"
-        app:layout_constraintHorizontal_bias="0.547"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btdata"
+        android:layout_width="167dp"
+        android:layout_height="48dp"
+        android:text="Data"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="257dp"
+        android:layout_alignTop="@+id/bthora"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/bthora"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:text="Hora"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="257dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agendar leitura"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="31dp" />
+
+    <EditText
+        android:id="@+id/editTextdata"
+        android:layout_width="170dp"
+        android:layout_height="46dp"
+        android:layout_alignBaseline="@+id/editTexttime"
+        android:layout_alignBottom="@+id/editTexttime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:editable="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:inputType="date"
+        android:contextClickable="false"
+        android:linksClickable="false"
+        android:longClickable="false"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="202dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione a data e a hora para a proxima leitura. O seu dispositivo irá lhe alertar quando chegar a hora marcada!"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="71dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="105dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/editTexttime"
+        android:layout_width="171dp"
+        android:layout_height="46dp"
+        android:layout_above="@+id/bthora"
+        android:layout_alignLeft="@+id/bthora"
+        android:layout_alignStart="@+id/bthora"
+        android:layout_marginBottom="32dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:focusable="false"
+        android:inputType="time"
+        android:linksClickable="false"
+        android:longClickable="false"
+        tools:layout_editor_absoluteX="197dp"
+        tools:layout_editor_absoluteY="202dp" />
+
+</RelativeLayout>
