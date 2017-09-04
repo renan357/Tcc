@@ -23,7 +23,8 @@
         <activity android:name=".BancoFragment" />
         <activity android:name=".list_adapter" />
         <activity android:name=".MainFragment" />
-        <activity android:name=".ClockFragment"></activity>
+        <activity android:name=".ClockFragment" />
+        <activity android:name=".Base_pressionFragment"></activity>
     </application>
 
 </manifest>

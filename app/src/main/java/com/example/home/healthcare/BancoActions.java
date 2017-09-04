@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-/**
- * Created by Home on 31/07/2017.
- */
 
 public class BancoActions {
     private Banco banco;
@@ -98,11 +95,55 @@ public class BancoActions {
         return l;
     }
 
+    public void updatebase (Userdata user){
+        db.execSQL("DROP TABLE IF EXISTS pressaobase;");
+        db.execSQL("CREATE TABLE pressaobase (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, ASYS TEXT NOT NULL, ADIA TEXT NOT NULL, BSYS TEXT NOT NULL, BDIA TEXT NOT NULL);");
+        db.execSQL("INSERT INTO pressaobase (SYS, DIA, ASYS, ADIA, BSYS, BDIA) VALUES ('"+user.getNormalsys() +"','"+
+                user.getNormaldia()+"','"+user.getAltasys()+"','"+user.getAltadia()+"','"+user.getBaixasys()+"','"+user.getBaixadia()+"');");
+    }
+    public Userdata getbase (){
+        Userdata user = new Userdata();
+        Cursor c;
+        c=db.rawQuery("SELECT SYS FROM pressaobase;", null);
+        while(c.moveToNext()){
+            user.setNormalsys(c.getString(0));
+        }
+        c=db.rawQuery("SELECT DIA FROM pressaobase;", null);
+        while(c.moveToNext()){
+            user.setNormaldia(c.getString(0));
+        }
+
+        c=db.rawQuery("SELECT ASYS FROM pressaobase;", null);
+        while(c.moveToNext()){
+            user.setAltasys(c.getString(0));
+        }
+        c=db.rawQuery("SELECT ADIA FROM pressaobase;", null);
+        while(c.moveToNext()){
+            user.setAltadia(c.getString(0));
+        }
+        c=db.rawQuery("SELECT BSYS FROM pressaobase;", null);
+        while(c.moveToNext()){
+            user.setBaixasys(c.getString(0));
+        }
+        c=db.rawQuery("SELECT BDIA FROM pressaobase;", null);
+        while(c.moveToNext()){
+            user.setBaixadia(c.getString(0));
+        }
+        c.close();
+        db.close();
+        return user;
+    }
+
     public void delatabanco()
     {
         db.execSQL("DROP TABLE IF EXISTS paciente;");
         db.execSQL("CREATE TABLE paciente (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, PULSE TEXT NOT NULL, DATE TEXT NOT NULL, TIME TEXT NOT NULL);");
 
     }
+    public void deletabase()
+    {
+        db.execSQL("DROP TABLE IF EXISTS pressaobase;");
+        db.execSQL("CREATE TABLE pressaobase (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, ASYS TEXT NOT NULL, ADIA TEXT NOT NULL, BSYS TEXT NOT NULL, BDIA TEXT NOT NULL);");
 
+    }
 }

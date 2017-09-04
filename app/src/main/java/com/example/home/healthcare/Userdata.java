@@ -1,8 +1,5 @@
 package com.example.home.healthcare;
 
-/**
- * Created by Home on 30/07/2017.
- */
 
 public class Userdata {
 
@@ -12,6 +9,13 @@ public class Userdata {
     String pulse;
     String date;
     String time;
+    String normalsys;
+    String normaldia;
+    String altasys;
+    String altadia;
+    String baixasys;
+    String baixadia;
+
 
     public Userdata(int id, String sys , String dia, String bat, String date, String time){
         this.id = id;
@@ -30,6 +34,9 @@ public class Userdata {
         this.time = time;
     }
 
+    public Userdata(){
+
+    }
 
     public int getId() {
         return id;
@@ -78,4 +85,53 @@ public class Userdata {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getNormalsys() {
+        return normalsys;
+    }
+
+    public void setNormalsys(String normalsys) {
+        this.normalsys = normalsys;
+    }
+
+    public String getNormaldia() {
+        return normaldia;
+    }
+
+    public void setNormaldia(String normaldia) {
+        this.normaldia = normaldia;
+    }
+
+    public String getAltasys() {
+        return altasys;
+    }
+
+    public void setAltasys(String altasys) {
+        this.altasys = altasys;
+    }
+
+    public String getAltadia() {
+        return altadia;
+    }
+
+    public void setAltadia(String altadia) {
+        this.altadia = altadia;
+    }
+
+    public String getBaixasys() {
+        return baixasys;
+    }
+
+    public void setBaixasys(String baixasys) {
+        this.baixasys = baixasys;
+    }
+
+    public String getBaixadia() {
+        return baixadia;
+    }
+
+    public void setBaixadia(String baixadia) {
+        this.baixadia = baixadia;
+    }
+
 }

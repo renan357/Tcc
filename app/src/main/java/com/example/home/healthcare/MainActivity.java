@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new Leitura())
+                            , new LeituraFragment())
                     .commit();
         } else if (id == R.id.nav_slideshow) {
             listabanco();
@@ -110,6 +110,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.nav_config) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new Base_pressionFragment())
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

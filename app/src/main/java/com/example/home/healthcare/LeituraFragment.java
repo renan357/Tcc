@@ -17,7 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Leitura extends Fragment {
+public class LeituraFragment extends Fragment {
 
     static View myView;
     Switch aswitch;
@@ -150,9 +150,9 @@ public class Leitura extends Fragment {
                     int d;
                     s= Integer.valueOf(sys);
                     d= Integer.valueOf(dia);
-                    if (s >=14 && d >=9){
+                    if (s >=140 && d >=90){
                         alerta("alta");
-                    }else if (s <=9 && d <=6){
+                    }else if (s <=90 && d <=60){
                         alerta("baixa");
                     }
                     dadosok =1;

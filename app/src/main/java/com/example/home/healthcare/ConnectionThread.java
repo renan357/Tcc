@@ -24,7 +24,7 @@ public class ConnectionThread extends Thread {
     boolean server;
     boolean running = false;
     static boolean isConnected = false;
-    Leitura leitura = new Leitura();
+    LeituraFragment leituraFragment = new LeituraFragment();
 
 
 
@@ -143,7 +143,7 @@ public class ConnectionThread extends Thread {
         Bundle bundle = new Bundle();
         bundle.putByteArray("data", data);
         message.setData(bundle);
-        leitura.handler.sendMessage(message);
+        leituraFragment.handler.sendMessage(message);
     }
 
 

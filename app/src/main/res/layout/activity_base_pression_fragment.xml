@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.home.healthcare.Base_pressionFragment">
+
+    <TextView
+        android:id="@+id/textconfig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:text="Configurações" />
+
+    <TextView
+        android:id="@+id/textconfig1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textconfig3"
+        android:layout_alignStart="@+id/textconfig3"
+        android:layout_below="@+id/textconfig"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="26dp"
+        android:text="    Algumas pessoas possuem os níveis de pressão padrão alterados, assim como gestantes, idosos e crianças. Nesta aba você pode configurar os seus padrões de pressão:" />
+
+    <EditText
+        android:id="@+id/editsysnormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_below="@+id/textconfig1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/textconfig"
+        android:layout_toEndOf="@+id/textconfig" />
+
+    <EditText
+        android:id="@+id/editdianormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editsysnormal"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/editsysalto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editdianormal"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_toRightOf="@+id/textView16"
+        android:layout_toEndOf="@+id/textView16" />
+
+    <EditText
+        android:id="@+id/editdiaalto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editsysalto"
+        android:layout_alignStart="@+id/editsysalto"
+        android:layout_below="@+id/editsysalto"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editsysbaixo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editdiaalto"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_toEndOf="@+id/textView12"
+        android:layout_toRightOf="@+id/textView12" />
+
+    <EditText
+        android:id="@+id/editdiabaixo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editsysbaixo"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_alignLeft="@+id/editsysbaixo"
+        android:layout_alignStart="@+id/editsysbaixo" />
+
+    <Button
+        android:id="@+id/btsaveconfig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:text="Salvar" />
+
+    <TextView
+        android:id="@+id/textconfig3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editdianormal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:text="Pressão normal" />
+
+    <TextView
+        android:id="@+id/textconfig4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editdiaalto"
+        android:layout_alignLeft="@+id/textconfig3"
+        android:layout_alignStart="@+id/textconfig3"
+        android:text="Pressão baixa" />
+
+    <TextView
+        android:id="@+id/textconfig5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editdiabaixo"
+        android:layout_alignLeft="@+id/textconfig4"
+        android:layout_alignStart="@+id/textconfig4"
+        android:text="Pressão alta" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sys: "
+        android:layout_above="@+id/editdiaalto"
+        android:layout_toLeftOf="@+id/editsysalto"
+        android:layout_toStartOf="@+id/editsysalto" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editdianormal"
+        android:layout_toLeftOf="@+id/editsysnormal"
+        android:layout_toStartOf="@+id/editsysnormal"
+        android:text="Sys: " />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sys: "
+        android:layout_above="@+id/editdiabaixo"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dia: "
+        android:layout_alignBottom="@+id/editdiaalto"
+        android:layout_toLeftOf="@+id/editdiaalto"
+        android:layout_toStartOf="@+id/editdiaalto" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dia: "
+        android:layout_alignBottom="@+id/editdianormal"
+        android:layout_toLeftOf="@+id/editdianormal"
+        android:layout_toStartOf="@+id/editdianormal" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dia: "
+        android:layout_alignBottom="@+id/editdiabaixo"
+        android:layout_toLeftOf="@+id/editdiabaixo"
+        android:layout_toStartOf="@+id/editdiabaixo" />
+</RelativeLayout>
