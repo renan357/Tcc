@@ -21,7 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    FragmentManager fragmentManager = getFragmentManager();
+    static FragmentManager fragmentManager;
     static BancoActions banco;
     String data;
     String hora;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         banco = new BancoActions(this);
+        fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame
                         , new MainFragment())
@@ -85,7 +86,6 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         fragmentManager = getFragmentManager();
 
@@ -160,6 +160,13 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame
                         ,fragment).commit();
+    }
+
+    public void chamainicio(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame
+                        , new MainFragment())
+                .commit();
     }
 
 }

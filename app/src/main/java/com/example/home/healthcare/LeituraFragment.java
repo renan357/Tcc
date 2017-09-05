@@ -35,6 +35,7 @@ public class LeituraFragment extends Fragment {
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
     static int dadosok = 1;
+    static BancoActions banco;
     MainActivity mainActivity = new MainActivity();
     AlertDialog alert;
 
@@ -50,6 +51,7 @@ public class LeituraFragment extends Fragment {
         txtpareamento = (TextView)myView.findViewById(R.id.Leituratext5);
         bt = (Button)myView.findViewById(R.id.button);
         btbanco = (Button)myView.findViewById(R.id.btbanco);
+        banco = new BancoActions(mainActivity.getContext());
 
         aswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -144,15 +146,25 @@ public class LeituraFragment extends Fragment {
                 txtdia.setText(dia);
                 txtsys.setText(sys);
                 txtpulse.setText(pulse);
+                Userdata user;
+                banco.open();
+                user= banco.getbase();
+                banco.close();
+                banco.open();
                 if ((dia.equals("0")) &&(sys.equals("0"))&&(pulse.equals("0")));
                 else {
                     int s;
                     int d;
                     s= Integer.valueOf(sys);
                     d= Integer.valueOf(dia);
-                    if (s >=140 && d >=90){
+                    int altasys, baixasys, altadia, baixadia ;
+                    altasys = Integer.parseInt(user.getAltasys());
+                    altadia = Integer.parseInt(user.getAltadia());
+                    baixasys = Integer.parseInt(user.getBaixasys());
+                    baixadia = Integer.parseInt(user.getBaixadia());
+                    if (s >= altasys && d >=altadia){
                         alerta("alta");
-                    }else if (s <=90 && d <=60){
+                    }else if (s <=baixasys && d <=baixadia){
                         alerta("baixa");
                     }
                     dadosok =1;

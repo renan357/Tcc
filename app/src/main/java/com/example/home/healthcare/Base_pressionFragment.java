@@ -1,6 +1,7 @@
 package com.example.home.healthcare;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ public class Base_pressionFragment extends Fragment {
     static Button btsalva;
     BancoActions banco;
     MainActivity main = new MainActivity();
+    FragmentManager fragmentManager = getFragmentManager();
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,10 +34,7 @@ public class Base_pressionFragment extends Fragment {
         editbdia = (EditText) baseview.findViewById(R.id.editdiabaixo);
         btsalva = (Button) baseview.findViewById(R.id.btsaveconfig);
         banco = new BancoActions(main.getContext());
-        banco.open();
         Userdata user;
-        banco.deletabase();
-        banco.close();
         banco.open();
         user= banco.getbase();
         banco.close();
@@ -68,7 +67,17 @@ public class Base_pressionFragment extends Fragment {
         btsalva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Userdata user = new Userdata();
+                user.setNormalsys(editsys.getText().toString());
+                user.setNormaldia(editdia.getText().toString());
+                user.setAltasys(editasys.getText().toString());
+                user.setAltadia(editadia.getText().toString());
+                user.setBaixasys(editbsys.getText().toString());
+                user.setBaixadia(editbdia.getText().toString());
+                banco.open();
+                banco.updatebase(user);
+                banco.close();
+                main.chamainicio();
             }
         });
         return baseview;
