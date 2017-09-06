@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity
                         , new MainFragment())
                 .commit();
         context = this;
+        aaa
     }
 
     @Override
