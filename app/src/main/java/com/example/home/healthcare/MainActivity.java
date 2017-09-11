@@ -2,6 +2,7 @@ package com.example.home.healthcare;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -113,7 +114,8 @@ public class MainActivity extends AppCompatActivity
                             , new RelatorioFragment())
                     .commit();
         } else if (id == R.id.nav_send) {
-
+            Intent i = new Intent(MainActivity.this,Graph_Fragment.class);
+            startActivity(i);
         }else if (id == R.id.nav_config) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
