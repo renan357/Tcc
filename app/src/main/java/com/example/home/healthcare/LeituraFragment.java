@@ -115,6 +115,9 @@ public class LeituraFragment extends Fragment {
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
                 }else{
+                    sys = "10";
+                    dia = "11";
+                    pulse = "12";
                     mainActivity.gravabanco(sys,dia,pulse);
                     dadosok = 0;
                 }
