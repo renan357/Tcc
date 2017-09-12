@@ -1,11 +1,11 @@
 package com.example.home.healthcare;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +13,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -98,21 +103,6 @@ public class RelatorioFragment extends Fragment {
     }
 
     public void criadoc() throws IOException , DocumentException{
-       /* Document document = new Document();
-        try {
-
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
-            document.open();
-
-            document.add(new Paragraph("Gerando PDF - Java"));
-        }
-        catch(DocumentException de) {
-            System.err.println(de.getMessage());
-        }
-        catch(IOException ioe) {
-            System.err.println(ioe.getMessage());
-        }
-        document.close();*/
 
         Document doc = new Document(PageSize.A4);
         doc.setMargins(40, 40, 40, 80);
@@ -129,10 +119,60 @@ public class RelatorioFragment extends Fragment {
             Font fontBold = new Font(); //Fonte em Negrito
             fontBold.setStyle(Font.BOLD);
 
-            Paragraph p0 = new Paragraph("MIX2B", fontBold);
+            Paragraph p0 = new Paragraph("HealthCare", fontBold);
             p0.setAlignment(Element.ALIGN_CENTER);
-
             doc.add(p0);
+
+            doc.add(Chunk.NEWLINE);
+
+            LineSeparator line1 = new LineSeparator();
+            doc.add(line1);
+
+            doc.add(Chunk.NEWLINE);
+
+            Paragraph p1 = new Paragraph("Relatório de medidas cadastradas no banco de dados: ");
+            p1.setAlignment(Element.ALIGN_LEFT);
+            doc.add(p1);
+
+            doc.add(Chunk.NEWLINE);
+
+            PdfPTable table = new PdfPTable(4);
+
+            PdfPCell c1 = new PdfPCell(new Phrase("Data/hora"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("Pressão Sistólica"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("Pressão Diastólica"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("Batimentos Cardíacos"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            table.setHeaderRows(1);
+
+            table.addCell("Banana");
+            table.addCell("Laranja");
+            table.addCell("Abacate");
+            table.addCell("2.1");
+            table.addCell("2.2");
+
+            // Serão criadas mais 10 células na tabela
+            // a ordem será da esquerda para a direita de criação
+            // ao final de cada linha uma nova célula será criada na próxima
+            // linha
+            for (int i = 0; i < 10; i++) {
+                table.addCell("Céclula" + i);
+            }
+
+            doc.add(table);
+
+
             doc.close();
             pdf.close();
         }
@@ -177,7 +217,7 @@ public class RelatorioFragment extends Fragment {
         int pageCount = mPdfRenderer.getPageCount();
         mButtonPrevious.setEnabled(0 != index);
         mButtonNext.setEnabled(index + 1 < pageCount);
-        getActivity().setTitle("Healthcare "+ index + 1 +pageCount);
+        //getActivity().setTitle("Healthcare "+ index + 1 +pageCount);
     }
 
     public int getPageCount() {
