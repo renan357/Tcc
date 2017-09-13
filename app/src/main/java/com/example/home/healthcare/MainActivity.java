@@ -109,18 +109,23 @@ public class MainActivity extends AppCompatActivity
                             , new ClockFragment())
                     .commit();
         } else if (id == R.id.nav_share) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new RelatorioFragment())
-                    .commit();
+
         } else if (id == R.id.nav_send) {
-            Intent i = new Intent(MainActivity.this,Graph_Fragment.class);
-            startActivity(i);
+
         }else if (id == R.id.nav_config) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new Base_pressionFragment())
                     .commit();
+        }else if (id == R.id.nav_relatorio) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new RelatorioFragment())
+                    .commit();
+        }
+        else if (id == R.id.nav_graph) {
+            Intent i = new Intent(MainActivity.this,Graph_Fragment.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

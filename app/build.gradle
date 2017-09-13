@@ -22,6 +22,16 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
+dependencies {
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -33,5 +43,4 @@ dependencies {
     //compile 'com.github.PhilJay:MPAndroidChart:v2.2.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:24.0.0'
-    compile files('libs/MPAndroidChart-v3.0.1.jar')
 }

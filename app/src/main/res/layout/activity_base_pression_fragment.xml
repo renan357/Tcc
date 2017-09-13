@@ -132,7 +132,6 @@
         android:text="Pressão alta" />
 
     <TextView
-        android:id="@+id/textconfig5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editdiabaixo"
@@ -141,7 +140,6 @@
         android:text="Pressão baixa" />
 
     <TextView
-        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sys: "
@@ -159,7 +157,6 @@
         android:text="Sys: " />
 
     <TextView
-        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sys: "

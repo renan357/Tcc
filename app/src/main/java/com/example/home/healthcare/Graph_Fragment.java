@@ -26,9 +26,9 @@ public class Graph_Fragment extends AppCompatActivity implements OnChartValueSel
 
     //static View GraphView;
     MainActivity mainActivity = new MainActivity();
-    private LineChart mChart;
-    protected Typeface mTfRegular;
-    protected Typeface mTfLight;
+    LineChart mChart;
+    Typeface mTfRegular;
+    Typeface mTfLight;
 
     @Override
     public void onCreate( Bundle savedInstanceState, PersistableBundle persistentState) {

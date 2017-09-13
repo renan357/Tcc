@@ -7,7 +7,6 @@
     tools:context="com.example.home.healthcare.MainFragment">
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="154dp"
         android:layout_height="49dp"
         android:text="HealthCare"
