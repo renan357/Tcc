@@ -9,6 +9,7 @@ import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +55,7 @@ public class RelatorioFragment extends Fragment {
     static Button mButtonPrevious;
     static Button mButtonNext;
     static int mPageIndex;
+    static Button sendemail;
     static View RelatorioView;
     static InputStream asset;
     static BancoActions banco;
@@ -68,6 +70,7 @@ public class RelatorioFragment extends Fragment {
         mImageView = (ImageView) RelatorioView.findViewById(R.id.imagerelatorio);
         mButtonPrevious = (Button) RelatorioView.findViewById(R.id.previous);
         mButtonNext = (Button) RelatorioView.findViewById(R.id.next);
+        sendemail = (Button) RelatorioView.findViewById(R.id.btsendemail);
         mButtonPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +81,17 @@ public class RelatorioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showPage(mCurrentPage.getIndex() + 1);
+            }
+        });
+        sendemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String data = dateFormat.format(new Date(System.currentTimeMillis())).toString();
+                SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm:ss");
+                Date hora1 = Calendar.getInstance().getTime();
+                String hora= horaFormat.format(hora1).toString();
+                composeEmail("","Relatório de medidas HealthCare",data + " "+ hora);
             }
         });
         new task().execute();
@@ -125,12 +139,6 @@ public class RelatorioFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             pDialog.dismiss();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String data = dateFormat.format(new Date(System.currentTimeMillis())).toString();
-            SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm:ss");
-            Date hora1 = Calendar.getInstance().getTime();
-            String hora= horaFormat.format(hora1).toString();
-            composeEmail("renan.moreto357@gmail.com","Relatório de medidas HealthCare",data + " "+ hora);
             try {
                 openRenderer(main.getContext());
                 showPage(mPageIndex);
@@ -143,12 +151,13 @@ public class RelatorioFragment extends Fragment {
 
     public void composeEmail(String de ,String titulo, String texto) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.setData(Uri.parse("mailto:"));
+        // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, de);
         intent.putExtra(Intent.EXTRA_SUBJECT, titulo);
         intent.putExtra(Intent.EXTRA_TEXT, texto);
-        writeToExternal(main.getContext(),"relatorio.pdf");
-        File file = new File(main.getContext().getExternalFilesDir(null) + File.separator + "relatorio.pdf");
+       // writeToExternal(main.getContext(),"relatorio.pdf");
+        File file = new File(main.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File.separator + "relatorio.pdf");
         if (!file.exists() || !file.canRead()) {
             Toast.makeText(main.getContext(), "Attachment Error", Toast.LENGTH_SHORT).show();
             return;
@@ -161,7 +170,7 @@ public class RelatorioFragment extends Fragment {
         }
     }
 
-    public void writeToExternal(Context context, String filename){
+   /* public void writeToExternal(Context context, String filename){
         try {
             File file = new File(context.getExternalFilesDir(null), filename); //Get file location from external source
             InputStream is = new FileInputStream(context.getFilesDir() + File.separator + filename); //get file location from internal
@@ -178,7 +187,7 @@ public class RelatorioFragment extends Fragment {
         } catch (Exception e) {
             Toast.makeText(context, "File write failed: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show(); //if there's an error, make a piece of toast and serve it up
         }
-    }
+    }*/
 
     @Override
     public void onStart() {
@@ -207,7 +216,8 @@ public class RelatorioFragment extends Fragment {
         doc.setMargins(40, 40, 40, 80);
         doc.addCreationDate();
 
-        File file = new File(main.getContext().getFilesDir(), "relatorio.pdf" );
+
+        File file = new File(main.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "relatorio.pdf");
         file.createNewFile();
         if (file.exists()) {
 
@@ -296,7 +306,7 @@ public class RelatorioFragment extends Fragment {
     }
 
     private void openRenderer(Context context) throws IOException {
-        File file = new File(context.getFilesDir(),"relatorio.pdf");
+        File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),"relatorio.pdf");
         if (!file.exists()) {
             asset = context.getAssets().open(file.toString());
             output = new FileOutputStream(file);
