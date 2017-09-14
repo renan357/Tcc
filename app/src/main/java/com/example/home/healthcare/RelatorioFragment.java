@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
@@ -131,7 +130,7 @@ public class RelatorioFragment extends Fragment {
             SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm:ss");
             Date hora1 = Calendar.getInstance().getTime();
             String hora= horaFormat.format(hora1).toString();
-           // composeEmail("renan.moreto357@gmail.com","Relatório de medidas HealthCare",data + " "+ hora);
+            composeEmail("renan.moreto357@gmail.com","Relatório de medidas HealthCare",data + " "+ hora);
             try {
                 openRenderer(main.getContext());
                 showPage(mPageIndex);
@@ -148,8 +147,8 @@ public class RelatorioFragment extends Fragment {
         intent.putExtra(Intent.EXTRA_EMAIL, de);
         intent.putExtra(Intent.EXTRA_SUBJECT, titulo);
         intent.putExtra(Intent.EXTRA_TEXT, texto);
-        writeToExternal(main.getContext(),FILE);
-        File file = new File(main.getContext().getCacheDir(), "relatorio.pdf");
+        writeToExternal(main.getContext(),"relatorio.pdf");
+        File file = new File(main.getContext().getExternalFilesDir(null) + File.separator + "relatorio.pdf");
         if (!file.exists() || !file.canRead()) {
             Toast.makeText(main.getContext(), "Attachment Error", Toast.LENGTH_SHORT).show();
             return;
@@ -165,7 +164,7 @@ public class RelatorioFragment extends Fragment {
     public void writeToExternal(Context context, String filename){
         try {
             File file = new File(context.getExternalFilesDir(null), filename); //Get file location from external source
-            InputStream is = new FileInputStream(context.getCacheDir() + File.separator + filename); //get file location from internal
+            InputStream is = new FileInputStream(context.getFilesDir() + File.separator + filename); //get file location from internal
             OutputStream os = new FileOutputStream(file); //Open your OutputStream and pass in the file you want to write to
             byte[] toWrite = new byte[is.available()]; //Init a byte array for handing data transfer
             Log.i("Available ", is.available() + "");
@@ -208,11 +207,11 @@ public class RelatorioFragment extends Fragment {
         doc.setMargins(40, 40, 40, 80);
         doc.addCreationDate();
 
-        File file = new File(FILE);
+        File file = new File(main.getContext().getFilesDir(), "relatorio.pdf" );
         file.createNewFile();
         if (file.exists()) {
 
-            PdfWriter pdf = PdfWriter.getInstance(doc, new FileOutputStream(FILE));
+            PdfWriter pdf = PdfWriter.getInstance(doc, new FileOutputStream(file));
 
             doc.open();
 
@@ -297,9 +296,9 @@ public class RelatorioFragment extends Fragment {
     }
 
     private void openRenderer(Context context) throws IOException {
-        File file = new File(context.getCacheDir(), "relatorio.pdf");
+        File file = new File(context.getFilesDir(),"relatorio.pdf");
         if (!file.exists()) {
-            asset = context.getAssets().open(FILE);
+            asset = context.getAssets().open(file.toString());
             output = new FileOutputStream(file);
             final byte[] buffer = new byte[1024];
             int size;
