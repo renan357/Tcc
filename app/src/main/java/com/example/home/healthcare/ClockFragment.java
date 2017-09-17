@@ -1,8 +1,12 @@
 package com.example.home.healthcare;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +19,18 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static android.content.Context.ALARM_SERVICE;
+
 public class ClockFragment extends Fragment {
 
     static View clockview;
-    Calendar dateTime = Calendar.getInstance();
+    static Calendar dateTime = Calendar.getInstance();
     static EditText textdate;
     static EditText texttime;
     static Button btn_date;
     static Button btn_time;
+    static Button btn_alarme;
+    static AlarmManager a;
     MainActivity mainActivity = new MainActivity();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +39,15 @@ public class ClockFragment extends Fragment {
         texttime = (EditText)clockview.findViewById(R.id.editTexttime);
         btn_date = (Button)clockview.findViewById(R.id.btdata);
         btn_time = (Button)clockview.findViewById(R.id.bthora);
+        btn_alarme = (Button)clockview.findViewById(R.id.btalarme);
+        a = (AlarmManager)mainActivity.getContext().getSystemService(ALARM_SERVICE);
 
+        btn_alarme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAlarm(false);
+            }
+        });
 
         btn_time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +90,9 @@ public class ClockFragment extends Fragment {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             dateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
             dateTime.set(Calendar.MINUTE, minute);
+            dateTime.set(Calendar.SECOND,0);
+            dateTime.set(Calendar.MILLISECOND,0);
+            //dateTime.set(Calendar.AM_PM,Calendar.PM);
             updateTexttime();
 
         }
@@ -87,6 +106,19 @@ public class ClockFragment extends Fragment {
     private void updateTexttime(){
         SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm");
         texttime.setText(horaFormat.format(dateTime.getTime()));
+    }
+
+    private void startAlarm(boolean isRepeat) {
+        AlarmManager manager = (AlarmManager)mainActivity.getContext().getSystemService(Context.ALARM_SERVICE);
+        Intent myIntent;
+        PendingIntent pendingIntent;
+        myIntent = new Intent(mainActivity.getContext(),AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(mainActivity.getContext(),0 ,myIntent,0);
+        manager.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis() ,pendingIntent);
+        /*if(!isRepeat)
+            manager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+3000,pendingIntent);
+        else
+            manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+3000,1000,pendingIntent);*/
     }
 
 }

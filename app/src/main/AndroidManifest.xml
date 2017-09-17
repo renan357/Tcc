@@ -33,6 +33,8 @@
         <activity android:name=".Graph_Fragment">
 
         </activity>
+
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>
