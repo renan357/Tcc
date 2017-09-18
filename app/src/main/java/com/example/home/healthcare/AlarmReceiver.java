@@ -23,7 +23,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("Alarm actived!")
                 .setContentText("THIS IS MY ALARM")
-                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
+                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND| Notification.DEFAULT_VIBRATE)
                 .setContentInfo("Info");
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);

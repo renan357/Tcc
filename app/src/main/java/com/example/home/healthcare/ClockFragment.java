@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,12 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import static android.content.Context.ALARM_SERVICE;
 
 public class ClockFragment extends Fragment {
 
@@ -30,7 +29,9 @@ public class ClockFragment extends Fragment {
     static Button btn_date;
     static Button btn_time;
     static Button btn_alarme;
-    static AlarmManager a;
+    static Switch switchclock;
+    static AlarmManager manager;
+    static PendingIntent pendingIntent;
     MainActivity mainActivity = new MainActivity();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,12 +41,17 @@ public class ClockFragment extends Fragment {
         btn_date = (Button)clockview.findViewById(R.id.btdata);
         btn_time = (Button)clockview.findViewById(R.id.bthora);
         btn_alarme = (Button)clockview.findViewById(R.id.btalarme);
-        a = (AlarmManager)mainActivity.getContext().getSystemService(ALARM_SERVICE);
+        switchclock = (Switch)clockview.findViewById(R.id.switch1);
+        manager = (AlarmManager)mainActivity.getContext().getSystemService(mainActivity.getContext().ALARM_SERVICE);
 
         btn_alarme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAlarm(false);
+                if(switchclock.isChecked())
+                startAlarm(true);
+                else {
+                    startAlarm(false);
+                }
             }
         });
 
@@ -108,17 +114,24 @@ public class ClockFragment extends Fragment {
         texttime.setText(horaFormat.format(dateTime.getTime()));
     }
 
-    private void startAlarm(boolean isRepeat) {
-        AlarmManager manager = (AlarmManager)mainActivity.getContext().getSystemService(Context.ALARM_SERVICE);
+    private void startAlarm(boolean repeat) {
         Intent myIntent;
-        PendingIntent pendingIntent;
         myIntent = new Intent(mainActivity.getContext(),AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(mainActivity.getContext(),0 ,myIntent,0);
-        manager.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis() ,pendingIntent);
-        /*if(!isRepeat)
-            manager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+3000,pendingIntent);
-        else
-            manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime()+3000,1000,pendingIntent);*/
+        String s = texttime.getText().toString();
+        if (texttime.getText().toString().equals("") || textdate.getText().toString().equals("")){
+            Toast.makeText(mainActivity.getContext(), "Data/Hora incorreta!",
+                    Toast.LENGTH_LONG).show();
+        }else{
+            if(!repeat)
+                manager.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis() ,pendingIntent);
+            else
+                manager.setRepeating(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(),AlarmManager.INTERVAL_HOUR,pendingIntent);
+        }
+    }
+
+    private void cancelAlarm(){
+        manager.cancel(pendingIntent);
     }
 
 }
