@@ -36,6 +36,7 @@ public class ClockFragment extends Fragment {
     static Button btn_cancela;
     static Switch switchclock;
     static Spinner spinner;
+    static Intent myIntent;
     static List<String> list;
     static AlarmManager manager;
     static PendingIntent pendingIntent;
@@ -143,7 +144,7 @@ public class ClockFragment extends Fragment {
     }
 
     private void startAlarm(boolean repeat) {
-        Intent myIntent;
+
         long tempo;
         String id = spinner.getSelectedItem().toString();
         if (id.equals("15 minutos")){
@@ -155,7 +156,6 @@ public class ClockFragment extends Fragment {
         }
         myIntent = new Intent(mainActivity.getContext(),AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(mainActivity.getContext(),0 ,myIntent,0);
-        String s = texttime.getText().toString();
         if (texttime.getText().toString().equals("") || textdate.getText().toString().equals("")){
             Toast.makeText(mainActivity.getContext(), "Data/Hora incorreta!",
                     Toast.LENGTH_LONG).show();
@@ -174,6 +174,8 @@ public class ClockFragment extends Fragment {
     }
 
     private void cancelAlarm(){
+        myIntent = new Intent(mainActivity.getContext(),AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(mainActivity.getContext(),0 ,myIntent,0);
         Toast.makeText(mainActivity.getContext(), "Alarmes Cancelados!",
                 Toast.LENGTH_LONG).show();
         manager.cancel(pendingIntent);
