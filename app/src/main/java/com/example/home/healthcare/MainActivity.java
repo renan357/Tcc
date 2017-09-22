@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity
 
     static FragmentManager fragmentManager;
     static BancoActions banco;
-    String data;
-    String hora;
     static BancoFragment fragment;
     static Context context;
+    String data;
+    String hora;
 
     public final Context getContext() {
         return context;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         banco = new BancoActions(this);
+        checkbasepression();
         fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame
@@ -145,6 +146,22 @@ public class MainActivity extends AppCompatActivity
         banco.close();
     }
 
+    public void checkbasepression() {
+        Userdata user;
+        banco.open();
+        user = banco.getbase();
+        banco.close();
+        banco.open();
+        if (user.getNormalsys() == null) {
+            user.setAltadia("90");
+            user.setAltasys("140");
+            user.setNormaldia("80");
+            user.setNormalsys("120");
+            user.setBaixasys("90");
+            user.setBaixadia("60");
+            banco.updatebase(user);
+        }
+    }
     public void listabanco(){
         banco.open();
         List<String> list = new ArrayList<String>();

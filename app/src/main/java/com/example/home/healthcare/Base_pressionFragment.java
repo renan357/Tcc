@@ -1,7 +1,6 @@
 package com.example.home.healthcare;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ public class Base_pressionFragment extends Fragment {
     static Button btsalva;
     BancoActions banco;
     MainActivity main = new MainActivity();
-    FragmentManager fragmentManager = getFragmentManager();
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,31 +35,12 @@ public class Base_pressionFragment extends Fragment {
         Userdata user;
         banco.open();
         user= banco.getbase();
-        banco.close();
-        banco.open();
-        if (user.getNormalsys() == null){
-            user.setAltadia("90");
-            user.setAltasys("140");
-            user.setNormaldia("80");
-            user.setNormalsys("120");
-            user.setBaixasys("90");
-            user.setBaixadia("60");
-            editsys.setText(user.getNormalsys());
-            editdia.setText(user.getNormaldia());
-            editasys.setText(user.getAltasys());
-            editadia.setText(user.getAltadia());
-            editbsys.setText(user.getBaixasys());
-            editbdia.setText(user.getBaixadia());
-            banco.updatebase(user);
-        }else{
-            user= banco.getbase();
-            editsys.setText(user.getNormalsys());
-            editdia.setText(user.getNormaldia());
-            editasys.setText(user.getAltasys());
-            editadia.setText(user.getAltadia());
-            editbsys.setText(user.getBaixasys());
-            editbdia.setText(user.getBaixadia());
-        }
+        editsys.setText(user.getNormalsys());
+        editdia.setText(user.getNormaldia());
+        editasys.setText(user.getAltasys());
+        editadia.setText(user.getAltadia());
+        editbsys.setText(user.getBaixasys());
+        editbdia.setText(user.getBaixadia());
         banco.close();
 
         btsalva.setOnClickListener(new View.OnClickListener() {
