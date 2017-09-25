@@ -110,7 +110,10 @@ public class MainActivity extends AppCompatActivity
                             , new ClockFragment())
                     .commit();
         } else if (id == R.id.nav_share) {
-
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new Recomendacoes_Fragment())
+                    .commit();
         } else if (id == R.id.nav_send) {
 
         }else if (id == R.id.nav_config) {

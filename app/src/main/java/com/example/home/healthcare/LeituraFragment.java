@@ -20,8 +20,6 @@ import android.widget.Toast;
 public class LeituraFragment extends Fragment {
 
     static View myView;
-    Switch aswitch;
-    BluetoothAdapter btAdapter;
     static ConnectionThread connect;
     static String sys;
     static String dia;
@@ -34,11 +32,61 @@ public class LeituraFragment extends Fragment {
     static TextView txtpulse;
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
-    static int dadosok = 1;
+    static int dadosok = 0;
     static BancoActions banco;
+    Switch aswitch;
+    BluetoothAdapter btAdapter;
     MainActivity mainActivity = new MainActivity();
     AlertDialog alert;
+    public Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle bundle = msg.getData();
+            byte[] data = bundle.getByteArray("data");
+            String dataString = new String(data);
+            if (dataString.equals("---N")) ;
+            else if (dataString.equals("---S")) ;
+            else {
+                txtdadosrecebidos.setText("Dados recebidos: ");
+                String[] parts = dataString.split(",");
+                sys = parts[0];
+                dia = parts[1];
+                pulse = parts[2];
+                sys = sys.replace(" ", "");
+                dia = dia.replace(" ", "");
+                pulse = pulse.replace(" ", "");
+                txtdia.setText(dia);
+                txtsys.setText(sys);
+                txtpulse.setText(pulse);
+                Userdata user;
+                banco.open();
+                user = banco.getbase();
+                banco.close();
+                banco.open();
+                if ((dia.equals("0")) && (sys.equals("0")) && (pulse.equals("0"))) ;
+                else {
+                    int s;
+                    int d;
+                    s = Integer.valueOf(sys);
+                    d = Integer.valueOf(dia);
+                    int altasys, baixasys, altadia, baixadia;
+                    altasys = Integer.parseInt(user.getAltasys());
+                    altadia = Integer.parseInt(user.getAltadia());
+                    baixasys = Integer.parseInt(user.getBaixasys());
+                    baixadia = Integer.parseInt(user.getBaixadia());
+                    if (s >= altasys && d >= altadia) {
+                        alerta("alta");
+                    } else if (s <= baixasys && d <= baixadia) {
+                        alerta("baixa");
+                    }
+                    dadosok = 1;
 
+                }
+
+            }
+
+        }
+    };
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.activity_leitura, container, false);
@@ -115,9 +163,6 @@ public class LeituraFragment extends Fragment {
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
                 }else{
-                    sys = "10";
-                    dia = "11";
-                    pulse = "12";
                     mainActivity.gravabanco(sys,dia,pulse);
                     dadosok = 0;
                 }
@@ -128,56 +173,6 @@ public class LeituraFragment extends Fragment {
 
         return myView;
     }
-
-    public Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Bundle bundle = msg.getData();
-            byte[] data = bundle.getByteArray("data");
-            String dataString = new String(data);
-            if (dataString.equals("---N"));
-            else if (dataString.equals("---S"));
-            else {
-                txtdadosrecebidos.setText("Dados recebidos: ");
-                String[] parts =dataString.split(",");
-                sys = parts[0];
-                dia = parts[1];
-                pulse = parts[2];
-                sys = sys.replace(" ","");
-                dia = dia.replace(" ","");
-                pulse = pulse.replace(" ","");
-                txtdia.setText(dia);
-                txtsys.setText(sys);
-                txtpulse.setText(pulse);
-                Userdata user;
-                banco.open();
-                user= banco.getbase();
-                banco.close();
-                banco.open();
-                if ((dia.equals("0")) &&(sys.equals("0"))&&(pulse.equals("0")));
-                else {
-                    int s;
-                    int d;
-                    s= Integer.valueOf(sys);
-                    d= Integer.valueOf(dia);
-                    int altasys, baixasys, altadia, baixadia ;
-                    altasys = Integer.parseInt(user.getAltasys());
-                    altadia = Integer.parseInt(user.getAltadia());
-                    baixasys = Integer.parseInt(user.getBaixasys());
-                    baixadia = Integer.parseInt(user.getBaixadia());
-                    if (s >= altasys && d >=altadia){
-                        alerta("alta");
-                    }else if (s <=baixasys && d <=baixadia){
-                        alerta("baixa");
-                    }
-                    dadosok =1;
-
-                }
-
-            }
-
-        }
-    };
 
     private void alerta(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity.getContext());

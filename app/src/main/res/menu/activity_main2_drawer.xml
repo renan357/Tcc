@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@android:drawable/ic_menu_rotate"
+            android:icon="@mipmap/home"
             android:title="Início" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/pulse"
             android:title="Leitura" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/database"
             android:title="Banco de dados" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/alarm"
             android:title="Exame" />
         <item
             android:id="@+id/nav_config"
@@ -28,7 +28,7 @@
             android:title="Relatório" />
         <item
             android:id="@+id/nav_graph"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/graph"
             android:title="Gráficos" />
 
 
@@ -39,11 +39,11 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@mipmap/help"
                 android:title="Recomendações" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@mipmap/manual"
                 android:title="Instruções" />
         </menu>
     </item>
