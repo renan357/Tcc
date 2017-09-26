@@ -23,9 +23,9 @@ public class Recomendacoes_Fragment extends Fragment {
                 "3- Sente-se em uma cadeira de encosto reto com as costas bem apoiadas, os dois pés no chão, as pernas em um ângulo reto descruzadas, " +
                         "adotando uma postura relaxada. O aparelho será colocado na altura do coração adaptando-o bem à circunferência do nosso braço e" +
                         " cuidando para que o indicador seja colocado sobre a artéria braquial. Também deve permitir-nos apoiar o cotovelo na mesa sem forçar a postura.",
-                "4- Uma vez bem posicionados, começaremos a medir a pressão arterial, ativando nosso medidor.",
-                "5- Uma vez bem posicionados, começaremos a medir a pressão arterial, ativando nosso medidor.",
-                "6- Em caso de erro na aferição, aguarde 2 minutos antes de realizar uma nova."};
+                "4- Uma vez bem posicionado, a pressão arterial pode começar a ser medida ativando o medidor.",
+                "5- Em caso de erro na aferição, aguarde 2 minutos antes de realizar uma nova.",
+                "6- Após realizar a leitura, ultilize o seu smartphone para gravar os dados obtidos."};
         help_adapter = new Help_adapter(getActivity(), ajudas);
         listView.setAdapter(help_adapter);
         return recView;

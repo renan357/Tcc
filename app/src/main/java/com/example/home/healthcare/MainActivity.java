@@ -115,6 +115,10 @@ public class MainActivity extends AppCompatActivity
                             , new Recomendacoes_Fragment())
                     .commit();
         } else if (id == R.id.nav_send) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new Help_fragment())
+                    .commit();
 
         }else if (id == R.id.nav_config) {
             fragmentManager.beginTransaction()
