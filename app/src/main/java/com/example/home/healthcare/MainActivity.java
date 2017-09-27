@@ -112,14 +112,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new Recomendacoes_Fragment())
+                            , new Help_fragment())
                     .commit();
         } else if (id == R.id.nav_send) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new Help_fragment())
+                            , new Recomendacoes_Fragment())
                     .commit();
-
         }else if (id == R.id.nav_config) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
@@ -130,8 +129,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new RelatorioFragment())
                     .commit();
-        }
-        else if (id == R.id.nav_graph) {
+        } else if (id == R.id.nav_graph) {
             Intent i = new Intent(MainActivity.this,Graph_Fragment.class);
             startActivity(i);
         }
