@@ -20,6 +20,22 @@ public class Graph_Fragment extends Fragment{
         webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl("file:///android_asset/index.html");
 
+
+        String summary =
+                "<html>" +
+                        "<head>        " +
+                        " <title>My First chart using FusionCharts XT - Using JavaScript</title>      " +
+                        "<script type=\"text/javascript\" src=\"FusionCharts/FusionCharts.js\"></script>" +
+                        "</head> " +
+                        "<body>" +
+                        " <div id=\"chartContainer\">FusionCharts XT will load here!</div>" +
+                        "<script type=\"text/javascript\">" +
+                        " var myChart = new FusionCharts( \"FusionCharts/Column3D.swf\",\"myChartId\", \"400\",\"300\", \"0\", \"1\" );" +
+                        "myChart.setXMLUrl(\"Data.xml\");" +
+                        "myChart.render(\"chartContainer\");" +
+                        "</script>" +
+                        "</body>" +
+                        "</html>";
         return graphView;
     }
 }
