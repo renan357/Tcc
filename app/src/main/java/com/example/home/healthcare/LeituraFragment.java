@@ -35,9 +35,11 @@ public class LeituraFragment extends Fragment {
     static int dadosok = 0;
     static BancoActions banco;
     Switch aswitch;
-    BluetoothAdapter btAdapter;
+    static BluetoothAdapter btAdapter;
     MainActivity mainActivity = new MainActivity();
     AlertDialog alert;
+    static ConnectionThread conec = new ConnectionThread();
+
     public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -101,6 +103,18 @@ public class LeituraFragment extends Fragment {
         btbanco = (Button)myView.findViewById(R.id.btbanco);
         banco = new BancoActions(mainActivity.getContext());
 
+
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (btAdapter.isEnabled() == true){
+            aswitch.setChecked(true);
+            txtconexao.setText("Hardware Bluetooth está funcionando.");
+            connect = new ConnectionThread("00:15:83:35:73:AF");
+            connect.start();
+        }else {
+            aswitch.setChecked(false);
+            txtconexao.setText("Hardware Bluetooth não está funcionando.");
+        }
+
         aswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -116,7 +130,14 @@ public class LeituraFragment extends Fragment {
                     //  MAC do módulo Bluetooth.
                     connect = new ConnectionThread("00:15:83:35:73:AF");
                     connect.start();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    mainActivity.chamaleitura();
                 } else {
+                    connect.running = false;
                     btAdapter.disable();
                     txtconexao.setText("Conexão bluetooth desativada.");
                 }
@@ -132,7 +153,7 @@ public class LeituraFragment extends Fragment {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectionThread conec = new ConnectionThread();
+
                 if (aswitch.isChecked() == true) {
                     if (txtconexao.getText().equals("Hardware Bluetooth está funcionando.")) {
                         connect.write("restart\n".getBytes());

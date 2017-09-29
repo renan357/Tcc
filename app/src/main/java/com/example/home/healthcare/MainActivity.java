@@ -130,8 +130,10 @@ public class MainActivity extends AppCompatActivity
                             , new RelatorioFragment())
                     .commit();
         } else if (id == R.id.nav_graph) {
-            Intent i = new Intent(MainActivity.this,Graph_Fragment.class);
-            startActivity(i);
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new Graph_Fragment())
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -199,6 +201,13 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame
                         , new MainFragment())
+                .commit();
+    }
+
+    public void chamaleitura(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame
+                        , new LeituraFragment())
                 .commit();
     }
 

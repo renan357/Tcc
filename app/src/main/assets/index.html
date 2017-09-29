@@ -1,0 +1,195 @@
+<html>
+<head>
+	<title>My first chart using FusionCharts Suite XT</title>
+	<script type="text/javascript" src="fusioncharts.js"></script>
+	<script type="text/javascript" src="fusioncharts.charts.js"></script>
+	<script type="text/javascript">
+	FusionCharts.ready(function(){
+    var revenueChart = new FusionCharts({
+        "type": "msline",
+        "renderAt": "chartContainer",
+        "width": "340",
+        "height": "460",
+        "dataFormat": "json",
+        "dataSource": {
+    "chart": {
+        "caption": "Sales - 2013 v 2012",
+        "xaxisname": "Month",
+        "yaxisname": "Revenue",
+        "showvalues": "0",
+        "numberprefix": "$",
+        "legendborderalpha": "50",
+        "showborder": "0",
+        "bgcolor": "FFFFFF,FFFFFF",
+        "plotgradientcolor": " ",
+        "showalternatehgridcolor": "0",
+        "showplotborder": "0",
+        "labeldisplay": "WRAP",
+        "divlinecolor": "CCCCCC",
+        "showcanvasborder": "0",
+        "canvasborderalpha": "0",
+        "legendshadow": "0",
+        "linethickness": "3"
+    },
+    "categories": [
+        {
+            "category": [
+                {
+                    "label": "Jan",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Feb",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Mar",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Apr",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "May",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Jun",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Jul",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Aug",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Sep",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Oct",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Nov",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                },
+                {
+                    "label": "Dec",
+                    "stepSkipped": false,
+                    "appliedSmartLabel": true
+                }
+            ]
+        }
+    ],
+    "dataset": [
+        {
+            "seriesname": "2013",
+            "color": "008ee4",
+            "data": [
+                {
+                    "value": "27400"
+                },
+                {
+                    "value": "29800"
+                },
+                {
+                    "value": "25800"
+                },
+                {
+                    "value": "26800"
+                },
+                {
+                    "value": "29600"
+                },
+                {
+                    "value": "32600"
+                },
+                {
+                    "value": "31800"
+                },
+                {
+                    "value": "36700"
+                },
+                {
+                    "value": "29700"
+                },
+                {
+                    "value": "31900"
+                },
+                {
+                    "value": "34800"
+                },
+                {
+                    "value": "24800"
+                }
+            ]
+        },
+        {
+            "seriesname": "2012",
+            "color": "f8bd19",
+            "data": [
+                {
+                    "value": "10000"
+                },
+                {
+                    "value": "11500"
+                },
+                {
+                    "value": "12500"
+                },
+                {
+                    "value": "15000"
+                },
+                {
+                    "value": "11000"
+                },
+                {
+                    "value": "9800"
+                },
+                {
+                    "value": "11800"
+                },
+                {
+                    "value": "19700"
+                },
+                {
+                    "value": "21700"
+                },
+                {
+                    "value": "21900"
+                },
+                {
+                    "value": "22900"
+                },
+                {
+                    "value": "20800"
+                }
+            ]
+        }
+    ]
+	}
+	});
+    revenueChart.render();
+	})
+	</script>
+</head>
+<body>
+<div id="chartContainer"></div>
+</body>
+</html>

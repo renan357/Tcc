@@ -16,23 +16,18 @@ import java.util.UUID;
 public class ConnectionThread extends Thread {
 
     static BluetoothSocket btSocket = null;
-    static BluetoothServerSocket btServerSocket = null;
     InputStream input = null;
     OutputStream output = null;
     String btDevAddress = null;
     String myUUID = "00001101-0000-1000-8000-00805F9B34FB";
     boolean server;
-    boolean running = false;
+    static boolean running = false;
     static boolean isConnected = false;
     LeituraFragment leituraFragment = new LeituraFragment();
 
 
-
-    public ConnectionThread() {
-
-        this.server = true;
+    public ConnectionThread(){
     }
-
 
     public ConnectionThread(String btDevAddress) {
 
@@ -48,52 +43,24 @@ public class ConnectionThread extends Thread {
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
 
-        if (this.server) {
+        try {
 
 
-            try {
+            BluetoothDevice btDevice = btAdapter.getRemoteDevice(btDevAddress);
+            btSocket = btDevice.createRfcommSocketToServiceRecord(UUID.fromString(myUUID));
 
+            btAdapter.cancelDiscovery();
 
-                btServerSocket = btAdapter.listenUsingRfcommWithServiceRecord("Super Counter", UUID.fromString(myUUID));
-                btSocket = btServerSocket.accept();
-
-
-                if (btSocket != null) {
-
-                    btServerSocket.close();
-                }
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-                toMainActivity("---N".getBytes());
+            if (btSocket != null) {
+                btSocket.connect();
             }
 
-
-        } else {
-
-
-            try {
+        } catch (IOException e) {
 
 
-                BluetoothDevice btDevice = btAdapter.getRemoteDevice(btDevAddress);
-                btSocket = btDevice.createRfcommSocketToServiceRecord(UUID.fromString(myUUID));
-
-                btAdapter.cancelDiscovery();
-
-                if (btSocket != null) {
-                    btSocket.connect();
-                }
-
-            } catch (IOException e) {
-
-
-                e.printStackTrace();
-                toMainActivity("---N".getBytes());
-            }
-
+            e.printStackTrace();
+            toMainActivity("---N".getBytes());
         }
-
 
         if (btSocket != null) {
 
@@ -133,8 +100,11 @@ public class ConnectionThread extends Thread {
                 isConnected = false;
             }
         }
-
     }
+
+
+
+
 
 
     private void toMainActivity(byte[] data) {
@@ -172,7 +142,6 @@ public class ConnectionThread extends Thread {
 
             running = false;
             isConnected = false;
-            btServerSocket.close();
             btSocket.close();
 
         } catch (IOException e) {
