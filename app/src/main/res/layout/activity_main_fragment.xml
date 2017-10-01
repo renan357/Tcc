@@ -7,14 +7,14 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="154dp"
-        android:layout_height="49dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="HealthCare"
         android:textColor="@android:color/background_dark"
-        android:textSize="30sp"
+        android:textSize="25sp"
         tools:layout_editor_absoluteX="115dp"
         tools:layout_editor_absoluteY="39dp" />
 
@@ -56,11 +56,11 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_centerVertical="true"
         android:layout_marginTop="25dp"
-        android:text="Agendar horários para medir a pressão;" />
+        android:text="Agendar horários para medir a pressão;"
+        android:layout_below="@+id/textView10"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10" />
 
     <TextView
         android:id="@+id/textView17"
@@ -99,5 +99,6 @@
         android:layout_alignStart="@+id/textView18"
         android:layout_below="@+id/textView18"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="20dp"
         android:text="Você pode acessar estas, e também outras funções acessando o menu lateral do aplicativo." />
 </RelativeLayout>
