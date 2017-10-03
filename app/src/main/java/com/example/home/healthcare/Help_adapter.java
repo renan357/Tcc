@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-
 public class Help_adapter extends ArrayAdapter<String> {
 
     private final Activity context;

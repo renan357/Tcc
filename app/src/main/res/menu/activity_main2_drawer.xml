@@ -26,13 +26,6 @@
             android:id="@+id/nav_relatorio"
             android:icon="@android:drawable/ic_dialog_email"
             android:title="Relatório" />
-        <item
-            android:id="@+id/nav_graph"
-            android:icon="@mipmap/graph"
-            android:title="Gráficos" />
-
-
-
     </group>
 
     <item android:title="Ajuda">

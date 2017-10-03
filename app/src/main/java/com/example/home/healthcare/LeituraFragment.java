@@ -103,17 +103,16 @@ public class LeituraFragment extends Fragment {
         btbanco = (Button)myView.findViewById(R.id.btbanco);
         banco = new BancoActions(mainActivity.getContext());
 
-
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (btAdapter.isEnabled() == true){
-            aswitch.setChecked(true);
-            txtconexao.setText("Hardware Bluetooth está funcionando.");
-            connect = new ConnectionThread("00:15:83:35:73:AF");
-            connect.start();
-        }else {
-            aswitch.setChecked(false);
-            txtconexao.setText("Hardware Bluetooth não está funcionando.");
+        if (btAdapter == null){
+            Toast.makeText(getActivity(), "O dispositivo não possui Hardware Bluetooth!",
+                    Toast.LENGTH_LONG).show();
+            mainActivity.chamainicio();
+        }else{
+            iniciabt();
         }
+
+
 
         aswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -195,10 +194,21 @@ public class LeituraFragment extends Fragment {
         return myView;
     }
 
+    public void iniciabt(){
+        if (btAdapter.isEnabled() == true){
+            aswitch.setChecked(true);
+            txtconexao.setText("Hardware Bluetooth está funcionando.");
+            connect = new ConnectionThread("00:15:83:35:73:AF");
+            connect.start();
+        }else {
+            aswitch.setChecked(false);
+            txtconexao.setText("Hardware Bluetooth não está funcionando.");
+        }
+    }
     private void alerta(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity.getContext());
         builder.setTitle("Alerta");
-        builder.setMessage("\n" + "Sua pressao esta " + s + "." + "\n" + "Refaça o teste, em caso de reincidência procure pela pagina de ajuda ");
+        builder.setMessage("\n" + "Sua pressão está " + s + "." + "\n" + "Refaça o teste, em caso de reincidência procure pela pagina de ajuda. ");
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
             }

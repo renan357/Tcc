@@ -2,7 +2,6 @@ package com.example.home.healthcare;
 
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity
         return context;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +53,6 @@ public class MainActivity extends AppCompatActivity
                         , new MainFragment())
                 .commit();
         context = this;
-
     }
 
     @Override
@@ -91,7 +88,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         fragmentManager = getFragmentManager();
-
         if (id == R.id.nav_camera) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
@@ -128,11 +124,6 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new RelatorioFragment())
-                    .commit();
-        } else if (id == R.id.nav_graph) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new Graph_Fragment())
                     .commit();
         }
 
@@ -210,6 +201,4 @@ public class MainActivity extends AppCompatActivity
                         , new LeituraFragment())
                 .commit();
     }
-
 }
-

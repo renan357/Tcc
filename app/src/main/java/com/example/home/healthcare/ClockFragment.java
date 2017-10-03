@@ -164,12 +164,12 @@ public class ClockFragment extends Fragment {
                 manager.set(AlarmManager.RTC_WAKEUP, dateTime.getTimeInMillis() ,pendingIntent);
                 Toast.makeText(mainActivity.getContext(), "Alarme Definido!",
                         Toast.LENGTH_LONG).show();
-                }
+            }
             else {
                 manager.setRepeating(AlarmManager.RTC_WAKEUP,dateTime.getTimeInMillis(),tempo,pendingIntent);
                 Toast.makeText(mainActivity.getContext(), "Alarme Definido!",
                         Toast.LENGTH_LONG).show();
-                }
+            }
         }
     }
 
@@ -180,5 +180,4 @@ public class ClockFragment extends Fragment {
                 Toast.LENGTH_LONG).show();
         manager.cancel(pendingIntent);
     }
-
 }

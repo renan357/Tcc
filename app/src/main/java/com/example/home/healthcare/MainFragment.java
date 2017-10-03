@@ -12,7 +12,6 @@ public class MainFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.activity_main_fragment, container,false);
-
         return mainView;
     }
 }

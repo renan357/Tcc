@@ -41,5 +41,4 @@ public class list_adapter extends ArrayAdapter<String> {
         txt5.setText(time[position]);
         return rowView;
     }
-
 }

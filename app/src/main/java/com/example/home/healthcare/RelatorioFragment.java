@@ -152,7 +152,6 @@ public class RelatorioFragment extends Fragment {
         intent.putExtra(Intent.EXTRA_EMAIL, de);
         intent.putExtra(Intent.EXTRA_SUBJECT, titulo);
         intent.putExtra(Intent.EXTRA_TEXT, texto);
-       // writeToExternal(main.getContext(),"relatorio.pdf");
         File file = new File(main.getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File.separator + "relatorio.pdf");
         if (!file.exists() || !file.canRead()) {
             Toast.makeText(main.getContext(), "Attachment Error", Toast.LENGTH_SHORT).show();
@@ -165,38 +164,6 @@ public class RelatorioFragment extends Fragment {
             startActivity(intent);
         }
     }
-
-   /* public void writeToExternal(Context context, String filename){
-        try {
-            File file = new File(context.getExternalFilesDir(null), filename); //Get file location from external source
-            InputStream is = new FileInputStream(context.getFilesDir() + File.separator + filename); //get file location from internal
-            OutputStream os = new FileOutputStream(file); //Open your OutputStream and pass in the file you want to write to
-            byte[] toWrite = new byte[is.available()]; //Init a byte array for handing data transfer
-            Log.i("Available ", is.available() + "");
-            int result = is.read(toWrite); //Read the data from the byte array
-            Log.i("Result", result + "");
-            os.write(toWrite); //Write it to the output stream
-            is.close(); //Close it
-            os.close(); //Close it
-            Log.i("Copying to", "" + context.getExternalFilesDir(null) + File.separator + filename);
-            Log.i("Copying from", context.getFilesDir() + File.separator + filename + "");
-        } catch (Exception e) {
-            Toast.makeText(context, "File write failed: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show(); //if there's an error, make a piece of toast and serve it up
-        }
-    }*/
-
-    @Override
-    public void onStart() {
-        super.onStart();
-       /* try {
-            openRenderer(main.getContext());
-            showPage(mPageIndex);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(main.getContext(), "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }*/
-    }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -262,29 +229,24 @@ public class RelatorioFragment extends Fragment {
             table.setHeaderRows(1);
 
             banco.open();
-            List<String> listsys = new ArrayList<String>();
+            List<String> listsys ;
             listsys = banco.getsys();
-            //String[] sys = list.toArray(new String[list.size()]);
             banco.close();
             banco.open();
-            List<String> listdia = new ArrayList<String>();
+            List<String> listdia;
             listdia = banco.getdia();
-            //String[] dia= list.toArray(new String[list.size()]);
             banco.close();
             banco.open();
-            List<String> listpulse = new ArrayList<String>();
+            List<String> listpulse;
             listpulse = banco.getpulse();
-            //String[] pulse = list.toArray(new String[list.size()]);
             banco.close();
             banco.open();
-            List<String> listdate = new ArrayList<String>();
+            List<String> listdate;
             listdate = banco.getdata();
-            //String[] date =list.toArray(new String[list.size()]);
             banco.close();
             banco.open();
-            List<String> listtime = new ArrayList<String>();
+            List<String> listtime;
             listtime = banco.gettime();
-            //String[] time = list.toArray(new String[list.size()]);
             banco.close();
 
             for(int i = 0; i < listsys.size(); i++){
@@ -340,7 +302,6 @@ public class RelatorioFragment extends Fragment {
         int pageCount = mPdfRenderer.getPageCount();
         mButtonPrevious.setEnabled(0 != index);
         mButtonNext.setEnabled(index + 1 < pageCount);
-        //getActivity().setTitle("Healthcare "+ index + 1 +pageCount);
     }
 
     public int getPageCount() {

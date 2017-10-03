@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Home on 31/07/2017.
- */
 
 public class Banco extends SQLiteOpenHelper{
 

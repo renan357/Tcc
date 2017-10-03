@@ -73,13 +73,9 @@ public class BancoFragment extends Fragment {
                 banco.close();
                 adapter = new list_adapter(context,sysAdap,diaAdap,pulseAdap,dateAdap,timeAdap);
                 listView.setAdapter(adapter);
-
             }
         });
 
         return bview;
     }
-
-
-
 }
