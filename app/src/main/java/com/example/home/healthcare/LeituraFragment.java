@@ -169,7 +169,7 @@ public class LeituraFragment extends Fragment {
                     txtpareamento.setText("Dispositivo não pareado!");
                 }
                 else {
-                    txtpareamento.setText("Dispositivo pareado!");
+                    txtpareamento.setText("");
                 }
 
             }

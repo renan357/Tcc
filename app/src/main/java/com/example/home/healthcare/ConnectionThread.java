@@ -99,6 +99,9 @@ public class ConnectionThread extends Thread {
                 isConnected = false;
             }
         }
+        else{
+            isConnected = false;
+        }
     }
 
 
