@@ -34,12 +34,11 @@ public class LeituraFragment extends Fragment {
     static TextView txtdadosrecebidos;
     static int dadosok = 0;
     static BancoActions banco;
-    Switch aswitch;
     static BluetoothAdapter btAdapter;
+    static ConnectionThread conec = new ConnectionThread();
+    Switch aswitch;
     MainActivity mainActivity = new MainActivity();
     AlertDialog alert;
-    static ConnectionThread conec = new ConnectionThread();
-
     public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -136,7 +135,7 @@ public class LeituraFragment extends Fragment {
                     }
                     mainActivity.chamaleitura();
                 } else {
-                    connect.running = false;
+                    ConnectionThread.running = false;
                     btAdapter.disable();
                     txtconexao.setText("Conexão bluetooth desativada.");
                 }
@@ -169,7 +168,12 @@ public class LeituraFragment extends Fragment {
                     txtpareamento.setText("Dispositivo não pareado!");
                 }
                 else {
-                    txtpareamento.setText("");
+                    if (aswitch.isChecked()) {
+                        txtpareamento.setText("Dispositivo pareado!");
+                    } else {
+                        txtpareamento.setText("Dispositivo não pareado!");
+                    }
+
                 }
 
             }
@@ -183,6 +187,8 @@ public class LeituraFragment extends Fragment {
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
                 }else{
+                    Toast.makeText(getActivity(), "Dados registrados com sucesso!",
+                            Toast.LENGTH_LONG).show();
                     mainActivity.gravabanco(sys,dia,pulse);
                     dadosok = 0;
                 }

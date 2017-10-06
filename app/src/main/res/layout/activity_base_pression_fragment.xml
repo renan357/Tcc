@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,10 +12,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
+        android:text="Configurações"
         android:textAllCaps="false"
         android:textColor="@android:color/background_dark"
-        android:textSize="25sp"
-        android:text="Configurações" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/textconfig1"
@@ -33,14 +32,14 @@
         android:id="@+id/editsysnormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="number"
-        android:layout_below="@+id/textconfig1"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textconfig1"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/textconfig"
         android:layout_toRightOf="@+id/textconfig"
-        android:layout_toEndOf="@+id/textconfig" />
+        android:ems="10"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editdianormal"
@@ -49,21 +48,20 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editsysnormal"
-        android:ems="10"
-        android:inputType="number"
+        android:layout_toEndOf="@+id/textView14"
         android:layout_toRightOf="@+id/textView14"
-        android:layout_toEndOf="@+id/textView14" />
+        android:ems="10"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editsysalto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editdianormal"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="number"
+        android:layout_toEndOf="@+id/textView16"
         android:layout_toRightOf="@+id/textView16"
-        android:layout_toEndOf="@+id/textView16" />
+        android:ems="10"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editdiaalto"
@@ -82,23 +80,22 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editdiaalto"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="number"
         android:layout_toEndOf="@+id/textView12"
-        android:layout_toRightOf="@+id/textView12" />
+        android:layout_toRightOf="@+id/textView12"
+        android:ems="10"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editdiabaixo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editsysbaixo"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/editsysbaixo"
         android:layout_below="@+id/editsysbaixo"
         android:ems="10"
-        android:inputType="number"
-        android:layout_alignLeft="@+id/editsysbaixo"
-        android:layout_alignStart="@+id/editsysbaixo" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btsaveconfig"
@@ -142,10 +139,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sys: "
         android:layout_above="@+id/editdiaalto"
         android:layout_toLeftOf="@+id/editsysalto"
-        android:layout_toStartOf="@+id/editsysalto" />
+        android:layout_toStartOf="@+id/editsysalto"
+        android:text="Sys: " />
 
     <TextView
         android:id="@+id/textView14"
@@ -159,36 +156,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sys: "
         android:layout_above="@+id/editdiabaixo"
         android:layout_alignLeft="@+id/textView15"
-        android:layout_alignStart="@+id/textView15" />
+        android:layout_alignStart="@+id/textView15"
+        android:text="Sys: " />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dia: "
         android:layout_alignBottom="@+id/editdiaalto"
         android:layout_toLeftOf="@+id/editdiaalto"
-        android:layout_toStartOf="@+id/editdiaalto" />
+        android:layout_toStartOf="@+id/editdiaalto"
+        android:text="Dia: " />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dia: "
         android:layout_alignBottom="@+id/editdianormal"
         android:layout_toLeftOf="@+id/editdianormal"
-        android:layout_toStartOf="@+id/editdianormal" />
+        android:layout_toStartOf="@+id/editdianormal"
+        android:text="Dia: " />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dia: "
         android:layout_alignBottom="@+id/editdiabaixo"
         android:layout_toLeftOf="@+id/editdiabaixo"
-        android:layout_toStartOf="@+id/editdiabaixo" />
+        android:layout_toStartOf="@+id/editdiabaixo"
+        android:text="Dia: " />
 
 </RelativeLayout>
