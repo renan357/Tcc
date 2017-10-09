@@ -15,23 +15,15 @@ public class Userdata {
     String altadia;
     String baixasys;
     String baixadia;
+    String status;
 
-
-    public Userdata(int id, String sys , String dia, String bat, String date, String time){
-        this.id = id;
+    public Userdata(String sys, String dia, String bat, String date, String time, String status) {
         this.sys = sys;
         this.dia = dia;
         this.pulse = bat;
         this.date = date;
         this.time = time;
-    }
-
-    public Userdata( String sys , String dia, String bat, String date, String time){
-        this.sys = sys;
-        this.dia = dia;
-        this.pulse = bat;
-        this.date = date;
-        this.time = time;
+        this.status = status;
     }
 
     public Userdata(){
@@ -132,6 +124,14 @@ public class Userdata {
 
     public void setBaixadia(String baixadia) {
         this.baixadia = baixadia;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

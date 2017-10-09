@@ -36,7 +36,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -56,9 +55,9 @@ public class RelatorioFragment extends Fragment {
     static View RelatorioView;
     static InputStream asset;
     static BancoActions banco;
+    static FileOutputStream output;
     ProgressDialog pDialog;
     MainActivity main = new MainActivity();
-    static FileOutputStream output;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,53 +96,6 @@ public class RelatorioFragment extends Fragment {
             mPageIndex = savedInstanceState.getInt(STATE_CURRENT_PAGE_INDEX, 0);
         }
         return RelatorioView;
-    }
-
-
-
-    class task extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(main.getContext());
-            pDialog.setMessage("Gerando relatório..."+"\n"+"Por favor, aguarde!");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try{
-                Thread.sleep(1000);
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-            try {
-                criadoc();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (DocumentException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            pDialog.dismiss();
-            try {
-                openRenderer(main.getContext());
-                showPage(mPageIndex);
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(main.getContext(), "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     public void composeEmail(String de ,String titulo, String texto) {
@@ -208,7 +160,7 @@ public class RelatorioFragment extends Fragment {
 
             doc.add(Chunk.NEWLINE);
 
-            PdfPTable table = new PdfPTable(4);
+            PdfPTable table = new PdfPTable(5);
 
             PdfPCell c1 = new PdfPCell(new Phrase("Data/hora"));
             c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -223,6 +175,10 @@ public class RelatorioFragment extends Fragment {
             table.addCell(c1);
 
             c1 = new PdfPCell(new Phrase("Batimentos Cardíacos"));
+            c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("Status"));
             c1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(c1);
 
@@ -248,12 +204,17 @@ public class RelatorioFragment extends Fragment {
             List<String> listtime;
             listtime = banco.gettime();
             banco.close();
+            banco.open();
+            List<String> liststatus;
+            liststatus = banco.getstatus();
+            banco.close();
 
             for(int i = 0; i < listsys.size(); i++){
                 table.addCell(listdate.get(i)+ "\n" +listtime.get(i));
                 table.addCell(listsys.get(i));
                 table.addCell(listdia.get(i));
                 table.addCell(listpulse.get(i));
+                table.addCell(liststatus.get(i));
             }
 
             doc.add(table);
@@ -306,6 +267,49 @@ public class RelatorioFragment extends Fragment {
 
     public int getPageCount() {
         return mPdfRenderer.getPageCount();
+    }
+
+    class task extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(main.getContext());
+            pDialog.setMessage("Gerando relatório..." + "\n" + "Por favor, aguarde!");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                criadoc();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            pDialog.dismiss();
+            try {
+                openRenderer(main.getContext());
+                showPage(mPageIndex);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(main.getContext(), "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 

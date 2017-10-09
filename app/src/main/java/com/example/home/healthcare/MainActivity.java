@@ -132,14 +132,14 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void gravabanco(String sys, String dia, String pulse){
+    public void gravabanco(String sys, String dia, String pulse, String status) {
         banco.open();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         data = dateFormat.format(new Date(System.currentTimeMillis())).toString();
         SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm:ss");
         Date hora1 = Calendar.getInstance().getTime();
         hora= horaFormat.format(hora1).toString();
-        Userdata userdata = new Userdata(sys,dia,pulse,data,hora);
+        Userdata userdata = new Userdata(sys, dia, pulse, data, hora, status);
         banco.inseredata(userdata);
         banco.close();
     }
@@ -182,7 +182,11 @@ public class MainActivity extends AppCompatActivity
         list = banco.gettime();
         String[] time = list.toArray(new String[list.size()]);
         banco.close();
-        fragment = new BancoFragment(this,sys,dia,pulse,date,time);
+        banco.open();
+        list = banco.getstatus();
+        String[] status = list.toArray(new String[list.size()]);
+        banco.close();
+        fragment = new BancoFragment(this, sys, dia, pulse, date, time, status);
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame
                         ,fragment).commit();

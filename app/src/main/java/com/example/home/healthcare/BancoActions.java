@@ -27,7 +27,7 @@ public class BancoActions {
 
     public void inseredata(Userdata c)
     {
-        db.execSQL("INSERT INTO paciente (SYS, DIA, PULSE, DATE, TIME) VALUES ('"+c.getSys()+"','"+c.getDia()+"','"+c.getPulse()+"','"+c.getDate()+"','"+c.getTime()+"');");
+        db.execSQL("INSERT INTO paciente (SYS, DIA, PULSE, DATE, TIME, STATUS) VALUES ('" + c.getSys() + "','" + c.getDia() + "','" + c.getPulse() + "','" + c.getDate() + "','" + c.getTime() + "','" + c.getStatus() + "');");
     }
 
     public java.util.List<String> getsys() {
@@ -95,12 +95,26 @@ public class BancoActions {
         return l;
     }
 
+    public java.util.List<String> getstatus() {
+        java.util.List<String> l = new ArrayList<String>();
+        Cursor c;
+        c = db.rawQuery("SELECT STATUS FROM paciente;", null);
+
+        while (c.moveToNext()) {
+            l.add(c.getString(0));
+        }
+        c.close();
+        db.close();
+        return l;
+    }
+
     public void updatebase (Userdata user){
         db.execSQL("DROP TABLE IF EXISTS pressaobase;");
         db.execSQL("CREATE TABLE pressaobase (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, ASYS TEXT NOT NULL, ADIA TEXT NOT NULL, BSYS TEXT NOT NULL, BDIA TEXT NOT NULL);");
         db.execSQL("INSERT INTO pressaobase (SYS, DIA, ASYS, ADIA, BSYS, BDIA) VALUES ('"+user.getNormalsys() +"','"+
                 user.getNormaldia()+"','"+user.getAltasys()+"','"+user.getAltadia()+"','"+user.getBaixasys()+"','"+user.getBaixadia()+"');");
     }
+
     public Userdata getbase (){
         Userdata user = new Userdata();
         Cursor c;
@@ -137,7 +151,7 @@ public class BancoActions {
     public void delatabanco()
     {
         db.execSQL("DROP TABLE IF EXISTS paciente;");
-        db.execSQL("CREATE TABLE paciente (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, PULSE TEXT NOT NULL, DATE TEXT NOT NULL, TIME TEXT NOT NULL);");
+        db.execSQL("CREATE TABLE paciente (ID INTEGER PRIMARY KEY AUTOINCREMENT, SYS TEXT NOT NULL, DIA TEXT NOT NULL, PULSE TEXT NOT NULL, DATE TEXT NOT NULL, TIME TEXT NOT NULL, STATUS TEXT NOT NULL);");
 
     }
 }

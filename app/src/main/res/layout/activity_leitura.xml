@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -13,17 +13,17 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/conswitch"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/conswitch"
             android:text="Obter dados "
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:ignore="HardcodedText,MissingConstraints"
-            tools:layout_editor_absoluteY="109dp"
-            android:layout_alignLeft="@+id/conswitch"
-            android:layout_alignStart="@+id/conswitch" />
+            tools:layout_editor_absoluteY="109dp" />
 
         <Switch
             android:id="@+id/conswitch"
@@ -84,12 +84,12 @@
             android:id="@+id/Leituratext3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/conswitch"
             android:layout_alignLeft="@+id/Leituratext2"
+            android:layout_alignRight="@+id/conswitch"
             android:layout_alignStart="@+id/Leituratext2"
             android:layout_centerVertical="true"
-            android:text="Antes de realizar a medição, certifique-se que o aparelho está conectado corretamente. Em caso de dúvidas, consulte ao menu de ajuda."
-            android:layout_alignRight="@+id/conswitch"
-            android:layout_alignEnd="@+id/conswitch" />
+            android:text="Antes de realizar a medição, certifique-se que o aparelho está conectado corretamente. Em caso de dúvidas, consulte ao menu de ajuda." />
 
         <TextView
             android:id="@+id/Leituratext4"
@@ -139,5 +139,50 @@
             android:layout_alignRight="@+id/Leituratext4"
             android:onClick="gravabanco"
             android:text="gravar dados" />
+
+        <RadioGroup
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/conswitch"
+            android:layout_alignStart="@+id/conswitch"
+            android:layout_alignTop="@+id/Leituratext4">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Status atual" />
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Repouso" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Estresse baixo" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Estresse moderado" />
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Estresse alto" />
+
+        </RadioGroup>
 
 </RelativeLayout>

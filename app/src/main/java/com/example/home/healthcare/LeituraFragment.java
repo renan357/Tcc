@@ -13,9 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LeituraFragment extends Fragment {
 
@@ -32,7 +37,8 @@ public class LeituraFragment extends Fragment {
     static TextView txtpulse;
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
-    static int dadosok = 0;
+    static RadioGroup radioGroup;
+    static int dadosok = 1;
     static BancoActions banco;
     static BluetoothAdapter btAdapter;
     static ConnectionThread conec = new ConnectionThread();
@@ -101,6 +107,7 @@ public class LeituraFragment extends Fragment {
         bt = (Button)myView.findViewById(R.id.button);
         btbanco = (Button)myView.findViewById(R.id.btbanco);
         banco = new BancoActions(mainActivity.getContext());
+        radioGroup = (RadioGroup) myView.findViewById(R.id.group);
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         if (btAdapter == null){
@@ -183,13 +190,26 @@ public class LeituraFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                List<String> list = new ArrayList<>();
+                list.add("Repouso");
+                list.add("Estresse baixo");
+                list.add("Estresse moderado");
+                list.add("Estresse alto");
+                int i = 0;
+                i = radioGroup.getCheckedRadioButtonId();
                 if (dadosok == 0){
                     Toast.makeText(getActivity(), "Dados inválidos!",
                             Toast.LENGTH_LONG).show();
-                }else{
+                } else if (i == -1) {
+                    Toast.makeText(getActivity(), "Por favor selecione seu status!",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    RadioButton radioButton = (RadioButton) radioGroup.findViewById(radioButtonID);
+                    String selectedtext = (String) radioButton.getText();
                     Toast.makeText(getActivity(), "Dados registrados com sucesso!",
                             Toast.LENGTH_LONG).show();
-                    mainActivity.gravabanco(sys,dia,pulse);
+                    mainActivity.gravabanco(sys, dia, pulse, selectedtext);
                     dadosok = 0;
                 }
 

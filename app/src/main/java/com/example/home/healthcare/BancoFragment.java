@@ -17,23 +17,25 @@ public class BancoFragment extends Fragment {
     static View bview;
     static ListView listView;
     static Button btlimpa;
+    static list_adapter adapter;
     private final Activity context;
     private final String[] sys;
     private final String[] dia;
     private final String[] pulse;
     private final String[] date;
     private final String[] time;
-    static list_adapter adapter;
+    private final String[] status;
     BancoActions banco;
 
 
-    public BancoFragment(Activity context, String[] sys, String[] dia, String[] pulse, String[] date, String[] time){
+    public BancoFragment(Activity context, String[] sys, String[] dia, String[] pulse, String[] date, String[] time, String[] status) {
         this.context = context;
         this.sys = sys;
         this.dia = dia;
         this.pulse = pulse;
         this.date = date;
         this.time = time;
+        this.status = status;
     }
 
 
@@ -41,7 +43,7 @@ public class BancoFragment extends Fragment {
         bview = inflater.inflate(R.layout.activity_banco, container ,false);
         listView = (ListView)bview.findViewById(R.id.listview);
         btlimpa = (Button)bview.findViewById(R.id.buttonbanco);
-        adapter = new list_adapter(context,sys,dia,pulse,date,time);
+        adapter = new list_adapter(context, sys, dia, pulse, date, time, status);
         listView.setAdapter(adapter);
         btlimpa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +73,11 @@ public class BancoFragment extends Fragment {
                 list = banco.gettime();
                 String[] timeAdap = list.toArray(new String[list.size()]);
                 banco.close();
-                adapter = new list_adapter(context,sysAdap,diaAdap,pulseAdap,dateAdap,timeAdap);
+                banco.open();
+                list = banco.getstatus();
+                String[] statusAdap = list.toArray(new String[list.size()]);
+                banco.close();
+                adapter = new list_adapter(context, sysAdap, diaAdap, pulseAdap, dateAdap, timeAdap, statusAdap);
                 listView.setAdapter(adapter);
             }
         });
