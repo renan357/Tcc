@@ -38,7 +38,7 @@ public class LeituraFragment extends Fragment {
     static TextView txtpareamento;
     static TextView txtdadosrecebidos;
     static RadioGroup radioGroup;
-    static int dadosok = 1;
+    static int dadosok = 0;
     static BancoActions banco;
     static BluetoothAdapter btAdapter;
     static ConnectionThread conec = new ConnectionThread();
@@ -190,7 +190,7 @@ public class LeituraFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                List<String> list = new ArrayList<>();
+                List<String> list = new ArrayList<String>();
                 list.add("Repouso");
                 list.add("Estresse baixo");
                 list.add("Estresse moderado");
